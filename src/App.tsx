@@ -21,9 +21,9 @@ const theme = createTheme({
     primary: {
       main: "#1976d2",
     },
-    secondary: {
-      main: "#ffffff",
-    },
+    // secondary: {
+    //   main: "#ffffff",
+    // },
   },
   typography: {
     fontFamily: `"Baloo Bhaijaan 2"`,
