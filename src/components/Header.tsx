@@ -22,7 +22,7 @@ import { i18nProvider } from "../providers/i18nProvider";
 const Header = () => {
   const classes = useStyles();
   const translate = useTranslate();
-  const match = useRouteMatch(["/contacts"]);
+  const match = useRouteMatch(["/contacts", "/companies", "/deals"]);
   const currentPath = match?.path ?? "/";
   const setLocale = useSetLocale();
 
@@ -63,7 +63,7 @@ const Header = () => {
                   component={Link}
                   to="/"
                   value="/"
-                  disabled
+                  className={classes.tabs}
                 />
                 <Tab
                   label={translate("ra.contacts.contacts")}
@@ -84,7 +84,7 @@ const Header = () => {
                   component={Link}
                   to="/deals"
                   value="/deals"
-                  disabled
+                  className={classes.tabs}
                 />
               </Tabs>
             </Box>

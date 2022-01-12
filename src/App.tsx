@@ -31,8 +31,6 @@ const theme = createTheme({
   },
 });
 
-// const theme = createTheme(defaultTheme);
-
 const App = () => (
   <StylesProvider jss={jss}>
     <Admin

@@ -9,7 +9,7 @@ import {
   Toolbar,
   useEditContext,
 } from "react-admin";
-import { Card, CardContent, Divider, Box } from "@mui/material";
+import { Card, CardContent, Divider, Box } from "@material-ui/core";
 import omit from "lodash/omit";
 
 import Avatar from "./Avatar";
