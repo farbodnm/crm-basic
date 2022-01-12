@@ -50,13 +50,13 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
       <Box textAlign="center" mb={2}>
         {link === "edit" ? (
           <EditButton
-            basePath="/conacts"
+            basePath="/contacts"
             record={record}
             label={translate("ra.contacts.editContact")}
           />
         ) : (
           <ShowButton
-            basePath="/contact"
+            basePath="/contacts"
             record={record}
             label={translate("ra.contacts.showContact")}
           />
