@@ -2,6 +2,7 @@ import { random, lorem } from "faker/locale/fa";
 
 import { Db, ContactNote } from "../utils/types";
 import { randomDate } from "../utils/fakerFunctions";
+import { datatype } from "faker";
 
 const type = ["ایمیل", "تماس", "تماس", "تماس", "تماس", "جلسه", "یادآوری"];
 const status = ["cold", "cold", "cold", "warm", "warm", "hot", "in-contract"];
@@ -16,7 +17,7 @@ export const generateContactNotes = (db: Db): ContactNote[] => {
       id,
       contact_id: contact.id,
       type: random.arrayElement(type),
-      text: lorem.paragraphs(random.number({ min: 1, max: 4 })),
+      text: lorem.paragraphs(datatype.number({ min: 1, max: 4 })),
       date,
       sales_id: contact.sales_id,
       status: random.arrayElement(status),

@@ -3,6 +3,7 @@ import { add } from "date-fns";
 
 import { Db, Deal } from "../utils/types";
 import { randomDate } from "../utils/fakerFunctions";
+import { datatype } from "faker";
 
 const type = ["دیگر", "آگهی نویسی", "ui دیزاین", "دیزاین وبسایت"];
 
@@ -21,7 +22,7 @@ export const generateDeals = (db: Db): Deal[] => {
     company.nb_deals++;
     const contacts = random.arrayElements(
       db.contacts.filter((contact) => contact.company_id === company.id),
-      random.number({ min: 1, max: 3 })
+      datatype.number({ min: 1, max: 3 })
     );
     const lowercaseName = lorem.words();
     const created_at = randomDate(new Date(company.created_at)).toISOString();
@@ -32,8 +33,8 @@ export const generateDeals = (db: Db): Deal[] => {
       contact_ids: contacts.map((contact) => contact.id),
       type: random.arrayElement(type),
       stage: random.arrayElement(stages),
-      description: lorem.paragraphs(random.number({ min: 1, max: 4 })),
-      amount: random.number(1000) * 100,
+      description: lorem.paragraphs(datatype.number({ min: 1, max: 4 })),
+      amount: datatype.number(1000) * 100,
       created_at: created_at,
       updated_at: randomDate(new Date(created_at)).toISOString(),
       start_at: randomDate(

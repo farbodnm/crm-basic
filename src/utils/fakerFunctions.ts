@@ -19,7 +19,7 @@ export const randomDate = (minDate?: Date, maxDate?: Date) => {
       : Date.now() - 5 * 365 * 24 * 60 * 60 * 1000;
   const maxTs = maxDate instanceof Date ? maxDate.getTime() : Date.now();
   const range = maxTs - minTs;
-  const randomRange = faker.random.number({ max: range });
+  const randomRange = faker.datatype.number({ max: range });
   const ts = Math.sqrt(randomRange / range) * range;
   return new Date(minTs + ts);
 };
