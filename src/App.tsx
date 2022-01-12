@@ -1,4 +1,4 @@
-import { Admin, Resource, ListGuesser, defaultTheme } from "react-admin";
+import { Admin, Resource, ListGuesser } from "react-admin";
 import {
   createTheme,
   StylesProvider,
@@ -21,12 +21,9 @@ const theme = createTheme({
     primary: {
       main: "#1976d2",
     },
-    // secondary: {
-    //   main: "#ffffff",
-    // },
   },
   typography: {
-    fontFamily: `"Baloo Bhaijaan 2"`,
+    fontFamily: `"Baloo Bhaijaan 2", "cursive", "Tajawal", "sans-serif"`,
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
