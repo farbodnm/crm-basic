@@ -25,17 +25,17 @@ import {
   Typography,
   Theme,
 } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import { Link } from "react-router-dom";
 import { formatDistance } from "date-fns";
+import { faIR, enUS } from "date-fns/locale";
 
 import Avatar from "./Avatar";
 import Status from "../../components/Status";
 import TagsList from "./TagsList";
 import { ContactsListFilter } from "./ContactsListFilter";
 import { Contact } from "../../utils/types";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 const ContactListContent = () => {
   const translate = useTranslate();
@@ -96,8 +96,10 @@ const ContactListContent = () => {
             <ListItemSecondaryAction>
               <Typography variant="body2" color="textSecondary">
                 {`${translate("ra.contacts.lastActivity")} `}
-                {formatDistance(new Date(contact.last_seen), now)} ago{" "}
-                <Status status={contact.status} />
+                {formatDistance(new Date(contact.last_seen), now, {
+                  locale: i18nProvider.getLocale() === "fa" ? faIR : enUS,
+                })}{" "}
+                {translate("ra.misc.ago")} <Status status={contact.status} />
               </Typography>
             </ListItemSecondaryAction>
           </ListItem>

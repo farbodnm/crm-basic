@@ -54,6 +54,7 @@ const fa = {
       account: "کاربر",
       at: "در",
       dashboard: "داشبورد",
+      ago: "پیش",
     },
   },
 };
