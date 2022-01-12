@@ -24,6 +24,7 @@ import {
   Checkbox,
   Typography,
   Theme,
+  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -76,7 +77,7 @@ const ContactListContent = () => {
             <ListItemText
               primary={`${contact.first_name} ${contact.last_name}`}
               secondary={
-                <>
+                <Box dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
                   {contact.title} {translate("ra.misc.at")}{" "}
                   {/* <ReferenceField
                     record={contact}
@@ -90,7 +91,7 @@ const ContactListContent = () => {
                   {contact.nb_notes &&
                     `- ${contact.nb_notes} ${translate("ra.misc.notes")}`}
                   <TagsList record={contact} />
-                </>
+                </Box>
               }
             />
             <ListItemSecondaryAction>

@@ -12,6 +12,17 @@ import { Db, Contact } from "../utils/types";
 
 const genders = ["مرد", "زن"];
 const status = ["cold", "cold", "cold", "warm", "warm", "hot", "in-contract"];
+const titles = [
+  "مدیر ارشد",
+  "مدیر توسعه",
+  "مدیر اجرایی",
+  "مدیر امور تبلیغلات",
+  "مدیر بازاریابی",
+  "مدیر فروش",
+  "بازرس",
+  "مدیر انبار",
+  "هماهنگ کننده",
+];
 const maxContacts = {
   1: 1,
   10: 4,
@@ -32,7 +43,6 @@ export const generateContacts = (db: Db): Contact[] => {
       "https://marmelab.com/posters/avatar-" +
       Math.floor(Math.random() * (nbAvailblePictures + 1)) +
       ".jpeg";
-    const title = fakerCompany.bsAdjective();
 
     // choose company with people left to know
     let company;
@@ -49,7 +59,7 @@ export const generateContacts = (db: Db): Contact[] => {
       first_name,
       last_name,
       gender,
-      title: title.charAt(0).toUpperCase() + title.substr(1),
+      title: random.arrayElement(titles),
       company_id: company.id,
       email,
       phone_number1: phone.phoneNumber(),
