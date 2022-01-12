@@ -1,8 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
-  titles: {
-    fontSize: "0.900rem",
-    fontWeight: 600,
+  paper: {
+    paddingLeft: "8px",
+    paddingRight: "8px",
+    paddingBottom: "8px",
   },
 }));
