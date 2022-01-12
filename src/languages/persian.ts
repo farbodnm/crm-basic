@@ -13,7 +13,7 @@ const fa = {
       cold: "کم اهمیت",
       warm: "امیدوار",
       hot: "پر اهمیت",
-      inContract: "در قرارداد",
+      inContract: "قرارداد",
     },
     contacts: {
       contacts: "مخاطبین",
