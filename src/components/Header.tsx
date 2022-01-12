@@ -1,14 +1,35 @@
-import { Tabs, Tab, Toolbar, AppBar, Box, Typography } from "@material-ui/core";
+import {
+  Tabs,
+  Tab,
+  Toolbar,
+  AppBar,
+  Box,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
 import { Link, useRouteMatch } from "react-router-dom";
-import { UserMenu, Logout, LoadingIndicator, useTranslate } from "react-admin";
+import {
+  UserMenu,
+  Logout,
+  LoadingIndicator,
+  useTranslate,
+  useSetLocale,
+} from "react-admin";
 
 import useStyles from "../styles/components/header";
+import { i18nProvider } from "../providers/i18nProvider";
 
 const Header = () => {
   const classes = useStyles();
   const translate = useTranslate();
   const match = useRouteMatch(["/contacts"]);
   const currentPath = match?.path ?? "/";
+  const setLocale = useSetLocale();
+
+  const handleLanguageChange = () => {
+    const newLanguage = i18nProvider.getLocale() === "en" ? "fa" : "en";
+    setLocale(newLanguage);
+  };
 
   return (
     <nav className={classes.root}>
@@ -68,6 +89,9 @@ const Header = () => {
               </Tabs>
             </Box>
             <Box display="flex">
+              <IconButton onClick={handleLanguageChange} color="inherit">
+                {i18nProvider.getLocale()}
+              </IconButton>
               <LoadingIndicator />
               <UserMenu logout={<Logout button />} />
             </Box>
