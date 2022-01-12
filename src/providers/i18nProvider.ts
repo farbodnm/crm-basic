@@ -10,5 +10,6 @@ const messages: { [key: string]: any } = {
 
 export const i18nProvider = polyglotI18nProvider(
   (locale) => messages[locale],
-  "fa"
+  "fa",
+  { allowMissing: true }
 );
