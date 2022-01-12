@@ -77,9 +77,10 @@ const ContactListContent = () => {
             <ListItemText
               primary={`${contact.first_name} ${contact.last_name}`}
               secondary={
-                <Box dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
-                  {contact.title} {translate("ra.misc.at")}{" "}
-                  {/* <ReferenceField
+                <Box flex={1} display="flex">
+                  <Box dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
+                    {contact.title} {translate("ra.misc.at")}{" "}
+                    {/* <ReferenceField
                     record={contact}
                     source="company_id"
                     reference="companies"
@@ -88,8 +89,9 @@ const ContactListContent = () => {
                   >
                     <TextField source="name" />
                   </ReferenceField>{" "} */}
-                  {contact.nb_notes &&
-                    `- ${contact.nb_notes} ${translate("ra.misc.notes")}`}
+                    {contact.nb_notes &&
+                      `- ${contact.nb_notes} ${translate("ra.misc.notes")}`}
+                  </Box>
                   <TagsList record={contact} />
                 </Box>
               }
