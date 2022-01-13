@@ -1,3 +1,5 @@
+import { getResources } from "ra-core/esm/reducer/admin";
+
 const fa = {
   ra: {
     seenTime: {
@@ -30,8 +32,9 @@ const fa = {
       lastActivity: "آخرین فعالیت",
       tasks: "کارها",
       newContact: "مخاطب جدید",
-      firstName: "اسم",
-      lastName: "اسم فامیل",
+      first_name: "اسم",
+      last_name: "اسم فامیل",
+      last_seen: "آخرین فعالیت",
     },
     tags: {
       tags: "برچسب ها",

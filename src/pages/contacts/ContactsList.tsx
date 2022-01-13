@@ -6,14 +6,13 @@ import {
   TextField,
   useListContext,
   ExportButton,
-  SortButton,
+  // SortButton,
   TopToolbar,
   CreateButton,
   Pagination,
   useGetIdentity,
   useTranslate,
 } from "react-admin";
-
 import {
   List,
   ListItem,
@@ -37,6 +36,7 @@ import TagsList from "./TagsList";
 import { ContactsListFilter } from "./ContactsListFilter";
 import { Contact } from "../../utils/types";
 import { i18nProvider } from "../../providers/i18nProvider";
+import SortButton from "../../components/SortButton";
 
 const ContactListContent = () => {
   const translate = useTranslate();
@@ -122,13 +122,7 @@ const ContactListActions = () => {
   const classes = useActionStyles();
   return (
     <TopToolbar>
-      <SortButton
-        fields={[
-          translate("ra.contacts.lastName"),
-          translate("ra.contacts.firstName"),
-          translate("ra.seenTime.lastSeen"),
-        ]}
-      />
+      <SortButton fields={["last_seen", "first_name", "last_name"]} />
       <ExportButton />
       <CreateButton
         basePath="/contacts"
