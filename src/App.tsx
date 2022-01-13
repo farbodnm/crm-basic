@@ -23,7 +23,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: `"Baloo Bhaijaan 2", "cursive", "Tajawal", "sans-serif"`,
+    fontFamily: `'Noto Sans Arabic', sans-serif`,
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
