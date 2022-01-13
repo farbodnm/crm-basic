@@ -33,6 +33,11 @@ const fa = {
       first_name: "اسم",
       last_name: "اسم فامیل",
       last_seen: "آخرین فعالیت",
+      title: "مقام",
+      email: "ایمیل",
+      phoneNumber: "شماره تماس",
+      avatar: "آواتار",
+      newsLetter: "خبرنامه",
     },
     tags: {
       tags: "برچسب ها",
