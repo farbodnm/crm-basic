@@ -26,7 +26,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { formatDistance } from "date-fns";
+import { formatDistance } from "date-fns-jalali";
 import { faIR, enUS } from "date-fns/locale";
 
 import Avatar from "./Avatar";
@@ -97,7 +97,7 @@ const ContactListContent = () => {
             />
             <ListItemSecondaryAction>
               <Typography variant="body2" color="textSecondary">
-                {`${translate("ra.contacts.lastActivity")} `}
+                {`${translate("ra.contacts.last_seen")} `}
                 {formatDistance(new Date(contact.last_seen), now, {
                   locale: i18nProvider.getLocale() === "fa" ? faIR : enUS,
                 })}{" "}

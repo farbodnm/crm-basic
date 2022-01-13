@@ -12,7 +12,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { endOfYesterday, startOfWeek, startOfMonth } from "date-fns";
+import { endOfYesterday, startOfWeek, startOfMonth } from "date-fns-jalali";
 
 import Status from "../../components/Status";
 import useStyles from "../../styles/contacts/contactsListFilter";
@@ -31,7 +31,7 @@ export const ContactsListFilter = () => {
       <Paper className={classes.paper}>
         <FilterLiveSearch />
         <FilterList
-          label={translate("ra.seenTime.lastSeen")}
+          label={translate("ra.contacts.last_seen")}
           icon={<AccessTimeIcon />}
         >
           <FilterListItem

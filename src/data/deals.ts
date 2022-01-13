@@ -1,5 +1,5 @@
 import { random, lorem } from "faker/locale/fa";
-import { add } from "date-fns";
+import { add } from "date-fns-jalali";
 
 import { Db, Deal } from "../utils/types";
 import { randomDate } from "../utils/fakerFunctions";
