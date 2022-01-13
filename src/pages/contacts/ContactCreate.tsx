@@ -73,6 +73,7 @@ const Renderer = (formProps: any) => {
               <Divider />
               <Box mt={2} width="100%">
                 <TextInput
+                  dir="ltr"
                   label={translate("ra.contacts.email")}
                   source="email"
                   fullWidth
@@ -80,11 +81,16 @@ const Renderer = (formProps: any) => {
               </Box>
               <Box display="flex">
                 <TextInput
-                  label={translate("ra.contacts.phoneNumber")}
+                  label={translate("ra.contacts.phoneNumberWork")}
                   className={classes.center}
                   source="phone_number1"
                 />
                 <Spacer />
+                <TextInput
+                  label={translate("ra.contacts.phoneNumberPrivate")}
+                  className={classes.center}
+                  source="phone_number2"
+                />
               </Box>
               <Divider />
               <Box mt={2} width="100%">
