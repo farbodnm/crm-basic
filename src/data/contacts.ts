@@ -1,11 +1,4 @@
-import {
-  name,
-  internet,
-  random,
-  company as fakerCompany,
-  phone,
-  lorem,
-} from "faker/locale/fa";
+import { name, internet, random, phone, lorem } from "faker/locale/fa";
 
 import { randomDate, weightedBoolean } from "../utils/fakerFunctions";
 import { Db, Contact } from "../utils/types";

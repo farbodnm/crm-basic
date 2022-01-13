@@ -79,7 +79,10 @@ export const TagsListEdit = ({ record }: { record: Contact }) => {
     {},
     { version } as any // @FIXME UseDataProviderOptions don't allow [key: string]: any
   );
-  const { data: tags, loaded } = useGetMany("tags", record.tags, {
+  // const { data: tags, loaded } = useGetMany("tags", record.tags, {
+  //   enabled: record.tags && record.tags.length > 0,
+  // });
+  const { data: tags } = useGetMany("tags", record.tags, {
     enabled: record.tags && record.tags.length > 0,
   });
   const [update] = useUpdate();

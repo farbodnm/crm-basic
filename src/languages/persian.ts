@@ -1,5 +1,3 @@
-import { getResources } from "ra-core/esm/reducer/admin";
-
 const fa = {
   ra: {
     seenTime: {
