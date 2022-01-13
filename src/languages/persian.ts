@@ -30,6 +30,8 @@ const fa = {
       lastActivity: "آخرین فعالیت",
       tasks: "کارها",
       newContact: "مخاطب جدید",
+      firstName: "اسم",
+      lastName: "اسم فامیل",
     },
     tags: {
       tags: "برچسب ها",

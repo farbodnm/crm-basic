@@ -122,7 +122,13 @@ const ContactListActions = () => {
   const classes = useActionStyles();
   return (
     <TopToolbar>
-      <SortButton fields={["last_name", "first_name", "last_seen"]} />
+      <SortButton
+        fields={[
+          translate("ra.contacts.lastName"),
+          translate("ra.contacts.firstName"),
+          translate("ra.seenTime.lastSeen"),
+        ]}
+      />
       <ExportButton />
       <CreateButton
         basePath="/contacts"
