@@ -111,7 +111,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         />
         <br />
         <Typography component="span" variant="body2" color="textSecondary">
-          {translate("ra.seenTime.lastSeen")} {translate("ra.misc.on")}
+          {translate("ra.contacts.last_seen")} {translate("ra.misc.on")}
         </Typography>{" "}
         <DateField
           source="last_seen"

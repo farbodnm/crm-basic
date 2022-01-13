@@ -1,7 +1,6 @@
 const fa = {
   ra: {
     seenTime: {
-      lastSeen: "آخرین فعالیت",
       today: "امروز",
       thisWeek: "این هفته",
       thisMonth: "این ماه",
@@ -26,13 +25,11 @@ const fa = {
       female: "زن",
       background: "پیش زمینه",
       addedOn: "اضافه شده در",
-      lastSeenOn: "آخرین فعالیت",
-      lastActivity: "آخرین فعالیت",
       tasks: "کارها",
       newContact: "مخاطب جدید",
       first_name: "اسم",
       last_name: "اسم فامیل",
-      last_seen: "آخرین فعالیت",
+      last_seen: "آخرین تغییر",
       title: "مقام",
       email: "ایمیل",
       phoneNumberWork: "شماره تماس کاری",
