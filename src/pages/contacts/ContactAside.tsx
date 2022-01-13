@@ -32,7 +32,7 @@ const TasksIterator = () => {
                 <Typography variant="body2">{task.text}</Typography>
                 <Typography variant="body2" color="textSecondary">
                   {translate("ra.misc.due")}{" "}
-                  <DateField source="due_date" record={task} />
+                  <DateField locales="fa-IR" source="due_date" record={task} />
                 </Typography>
               </Box>
             </ListItem>
@@ -106,6 +106,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         </Typography>{" "}
         <DateField
           source="first_seen"
+          locales="fa-IR"
           options={{ year: "numeric", month: "long", day: "numeric" }}
           color="textSecondary"
         />
@@ -115,6 +116,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         </Typography>{" "}
         <DateField
           source="last_seen"
+          locales="fa-IR"
           options={{ year: "numeric", month: "long", day: "numeric" }}
           color="textSecondary"
         />
