@@ -43,6 +43,11 @@ const fa = {
       createNewTag: "ساختن برچسب جدید",
       tagName: "نام برچسب",
     },
+    tasks: {
+      addTask: "اضافه کردن کار",
+      createNewTask: "ساخت کار جدید",
+      task: "کار",
+    },
     companies: {
       companies: "شرکت ها",
     },
@@ -51,6 +56,10 @@ const fa = {
     },
     actions: {
       cancel: "لغو",
+    },
+    date: {
+      dueDate: "موعد",
+      minDateMessage: "این تاریخ قابل قبول نیست",
     },
     misc: {
       crm: "مدیریت ارتباطات",

@@ -19,11 +19,11 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { Contact } from "../../utils/types";
+import RoundButton from "../../components/RoundButton";
 
 const colors = [
   "#eddcd2",
@@ -37,31 +37,6 @@ const colors = [
   "#bcd4e6",
   "#99c1de",
 ];
-
-const useStyles = makeStyles({
-  root: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    display: "inline-block",
-    margin: 8,
-  },
-});
-
-const RoundButton = ({ color, handleClick, selected }: any) => {
-  const classes = useStyles();
-  return (
-    <button
-      type="button"
-      className={classes.root}
-      style={{
-        backgroundColor: color,
-        border: selected ? "2px solid grey" : "none",
-      }}
-      onClick={handleClick}
-    />
-  );
-};
 
 export const TagsListEdit = ({ record }: { record: Contact }) => {
   const translate = useTranslate();

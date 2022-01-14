@@ -5,48 +5,20 @@ import {
   ReferenceManyField,
   EditButton,
   ShowButton,
-  useListContext,
   useTranslate,
 } from "react-admin";
-import { Box, Typography, Divider, List, ListItem } from "@material-ui/core";
+import { Box, Typography, Divider, Paper } from "@material-ui/core";
 
 import { TagsListEdit } from "./TagsListEdit";
+import { i18nProvider } from "../../providers/i18nProvider";
+import TasksIterator from "./TasksIterator";
 
-const TasksIterator = () => {
-  const translate = useTranslate();
-  const { data, ids, loading } = useListContext();
-  if (loading || ids.length === 0) return null;
-  return (
-    <Box>
-      <Typography variant="subtitle2">
-        {translate("ra.contacts.tasks")}
-      </Typography>
-      <Divider />
-
-      <List>
-        {ids.map((id) => {
-          const task = data[id];
-          return (
-            <ListItem key={id} disableGutters>
-              <Box>
-                <Typography variant="body2">{task.text}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {translate("ra.misc.due")}{" "}
-                  <DateField locales="fa-IR" source="due_date" record={task} />
-                </Typography>
-              </Box>
-            </ListItem>
-          );
-        })}
-      </List>
-    </Box>
-  );
-};
+// @TODO color papers for new tasks.
 
 export const ContactAside = ({ record, link = "edit" }: any) => {
   const translate = useTranslate();
   return (
-    <Box ml={4} width={250} minWidth={250}>
+    <Box component={Paper} p={2} ml={2} width={250} minWidth={250}>
       <Box textAlign="center" mb={2}>
         {link === "edit" ? (
           <EditButton
@@ -100,7 +72,11 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
       <Divider />
 
       <Box mt={2}>{record && record.background}</Box>
-      <Box mt={1} mb={3}>
+      <Box
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+        mt={1}
+        mb={3}
+      >
         <Typography component="span" variant="body2" color="textSecondary">
           {translate("ra.contacts.addedOn")}
         </Typography>{" "}
@@ -134,7 +110,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         target="contact_id"
         reference="tasks"
       >
-        <TasksIterator />
+        <TasksIterator record={record} />
       </ReferenceManyField>
     </Box>
   );

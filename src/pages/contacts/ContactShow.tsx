@@ -1,8 +1,8 @@
 import {
   ShowBase,
   ShowProps,
-  TextField,
-  ReferenceField,
+  // TextField,
+  // ReferenceField,
   // ReferenceManyField,
   useShowContext,
 } from "react-admin";
