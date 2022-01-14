@@ -47,7 +47,7 @@ const colors = [
 
 const TasksIterator = ({ record }: { record: Contact }) => {
   const translate = useTranslate();
-  const { data, ids, loading } = useListContext();
+  const { data, ids } = useListContext();
   const [newTask, setNewTask] = useState("");
   const [newTaskColor, setNewTaskColor] = useState(colors[0]);
   const [open, setOpen] = useState(false);
@@ -92,7 +92,6 @@ const TasksIterator = ({ record }: { record: Contact }) => {
     );
   };
 
-  if (loading) return null;
   return (
     <Box marginBottom={2}>
       <Typography variant="subtitle2">
