@@ -52,7 +52,7 @@ const TasksIterator = ({ record }: { record: Contact }) => {
   const [newTaskColor, setNewTaskColor] = useState(colors[0]);
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [selectedDate, handleDateChange] = useState<Moment | null>(moment());
+  const [selectedDate, setSelectedDate] = useState<Moment | null>(moment());
   const [create] = useCreate();
   const refresh = useRefresh();
 
@@ -63,6 +63,10 @@ const TasksIterator = ({ record }: { record: Contact }) => {
 
   const handleNewTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(event.target.value);
+  };
+
+  const handleDateChange = (moment: Moment | null) => {
+    setSelectedDate(moment);
   };
 
   const handleCreateTask = (event: React.FormEvent<HTMLFormElement>) => {
@@ -80,6 +84,7 @@ const TasksIterator = ({ record }: { record: Contact }) => {
         onSuccess: () => {
           setNewTask("");
           setNewTaskColor(colors[0]);
+          setSelectedDate(moment());
           setOpen(false);
           refresh();
         },
@@ -151,7 +156,7 @@ const TasksIterator = ({ record }: { record: Contact }) => {
                     date ? date.format("jYYYY/jMM/jDD") : ""
                   }
                   value={selectedDate}
-                  onChange={handleDateChange}
+                  onChange={(e) => handleDateChange(e)}
                 />
               </MuiPickersUtilsProvider>
             </Box>
