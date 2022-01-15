@@ -153,7 +153,6 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
           </DialogTitle>
           <DialogContent>
             <TextField
-              autoFocus
               multiline
               rows={5}
               label={translate("ra.tasks.task")}
