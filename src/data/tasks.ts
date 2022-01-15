@@ -15,16 +15,16 @@ import { randomDate, weightedBoolean } from "../utils/fakerFunctions";
 // --pale-cerulean: #99c1deff;
 
 const colors = [
-  "#eddcd2ff",
-  "#fff1e6ff",
-  "#fde2e4ff",
-  "#fad2e1ff",
-  "#c5deddff",
-  "#dbe7e4ff",
-  "#f0efebff",
-  "#d6e2e9ff",
-  "#bcd4e6ff",
-  "#99c1deff",
+  "#eddcd2",
+  "#fff1e6",
+  "#fde2e4",
+  "#fad2e1",
+  "#c5dedd",
+  "#dbe7e4",
+  "#f0efeb",
+  "#d6e2e9",
+  "#bcd4e6",
+  "#99c1de",
 ];
 
 const type = [

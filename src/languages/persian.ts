@@ -47,6 +47,7 @@ const fa = {
       addTask: "اضافه کردن کار",
       createNewTask: "ساخت کار جدید",
       task: "کار",
+      editTask: "ویرایش کار",
     },
     companies: {
       companies: "شرکت ها",

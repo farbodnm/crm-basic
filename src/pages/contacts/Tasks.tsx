@@ -1,15 +1,20 @@
 import {
-  useListContext,
+  DateField,
   useTranslate,
-  useCreate,
+  Record,
+  Identifier,
+  useDelete,
+  useResourceContext,
+  useNotify,
+  useUpdate,
   useRefresh,
 } from "react-admin";
 import {
   Box,
   Typography,
-  Divider,
-  List,
-  Chip,
+  ListItem,
+  Tooltip,
+  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -17,16 +22,15 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import EditIcon from "@material-ui/icons/EditTwoTone";
+import DeleteIcon from "@material-ui/icons/CancelTwoTone";
 import { useState } from "react";
 import moment, { Moment } from "moment";
 import jMoment from "moment-jalaali";
 import JalaliUtils from "@date-io/jalaali";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import { Contact } from "../../utils/types";
 import RoundButton from "../../components/RoundButton";
-import Tasks from "./Tasks";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -43,20 +47,25 @@ const colors = [
   "#99c1de",
 ];
 
-const TasksIterator = ({ record }: { record: Contact }) => {
+const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
   const translate = useTranslate();
-  const { data, ids } = useListContext();
+  const [isHover, setHover] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [newTaskColor, setNewTaskColor] = useState(colors[0]);
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Moment | null>(moment());
-  const [create] = useCreate();
+  const resource = useResourceContext();
+  const notify = useNotify();
   const refresh = useRefresh();
+  const [update] = useUpdate();
 
-  const handleOpenCreateDialog = () => {
+  const handleOpenEditDialog = () => {
     setOpen(true);
     setDisabled(false);
+    setNewTask(task.text);
+    setSelectedDate(task.due_date);
+    setNewTaskColor(task.color);
   };
 
   const handleNewTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,22 +76,16 @@ const TasksIterator = ({ record }: { record: Contact }) => {
     setSelectedDate(moment);
   };
 
-  const handleCreateTask = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdateTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setDisabled(true);
-    create(
-      "tasks",
-      {
-        text: newTask,
-        color: newTaskColor,
-        contact_id: record.id,
-        due_date: selectedDate,
-      },
+    update(
+      resource,
+      id,
+      { text: newTask, color: newTaskColor, due_date: selectedDate },
+      task,
       {
         onSuccess: () => {
-          setNewTask("");
-          setNewTaskColor(colors[0]);
-          setSelectedDate(moment());
           setOpen(false);
           refresh();
         },
@@ -90,26 +93,53 @@ const TasksIterator = ({ record }: { record: Contact }) => {
     );
   };
 
+  const [handleDelete] = useDelete(resource, id, task, {
+    mutationMode: "undoable",
+    onSuccess: () => {
+      notify(translate("ra.tasks.taskDeleted"), {
+        type: "info",
+        undoable: true,
+      });
+    },
+  });
+
   return (
-    <Box marginBottom={2}>
-      <Typography variant="subtitle2">
-        {translate("ra.contacts.tasks")}
-      </Typography>
-      <Divider />
-      <List>
-        {ids.map((id) => {
-          const task = data[id];
-          return <Tasks key={id} id={id} task={task} />;
-        })}
-      </List>
-      <Chip
-        icon={<ControlPointIcon />}
-        size="small"
-        variant="outlined"
-        onClick={handleOpenCreateDialog}
-        color="primary"
-        label={translate("ra.tasks.addTask")}
-      />
+    <ListItem disableGutters>
+      <Box
+        bgcolor={task.color}
+        padding="10px"
+        borderRadius="10px"
+        flex={1}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <Box>
+          <Typography variant="body2">{task.text}</Typography>
+          <Box>
+            <Box
+              display="flex"
+              position="absolute"
+              right="0"
+              style={{ visibility: isHover ? "visible" : "hidden" }}
+            >
+              <Tooltip title={translate("ra.tasks.editTask")}>
+                <IconButton size="small" onClick={handleOpenEditDialog}>
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={translate("ra.tasks.deleteTasks")}>
+                <IconButton size="small" onClick={handleDelete}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Typography variant="body2" color="textSecondary">
+              {translate("ra.misc.due")}{" "}
+              <DateField locales="fa-IR" source="due_date" record={task} />
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -117,9 +147,9 @@ const TasksIterator = ({ record }: { record: Contact }) => {
         fullWidth={true}
         maxWidth="sm"
       >
-        <form onSubmit={handleCreateTask}>
+        <form onSubmit={handleUpdateTask}>
           <DialogTitle id="form-dialog-title">
-            {translate("ra.tasks.createNewTask")}
+            {translate("ra.tasks.editTask")}
           </DialogTitle>
           <DialogContent>
             <TextField
@@ -165,13 +195,13 @@ const TasksIterator = ({ record }: { record: Contact }) => {
               {translate("ra.actions.cancel")}
             </Button>
             <Button type="submit" color="primary" disabled={disabled}>
-              {translate("ra.tasks.addTask")}
+              {translate("ra.action.edit")}
             </Button>
           </DialogActions>
         </form>
       </Dialog>
-    </Box>
+    </ListItem>
   );
 };
 
-export default TasksIterator;
+export default Tasks;
