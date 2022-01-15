@@ -153,7 +153,7 @@ export const Note = ({
             <Button
               type="submit"
               color="primary"
-              variant="contained"
+              variant="outlined"
               disabled={loading}
             >
               {translate("ra.notes.updateNote")}

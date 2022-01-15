@@ -10,7 +10,7 @@ import {
   useEditContext,
   useTranslate,
 } from "react-admin";
-import { Card, CardContent, Divider, Box } from "@material-ui/core";
+import { Card, CardContent, Box } from "@material-ui/core";
 import omit from "lodash/omit";
 
 import Avatar from "./Avatar";
@@ -55,83 +55,87 @@ const ContactEditContent = () => {
           redirect="show"
           save={save}
           render={(formProps) => (
-            <Card>
+            <Card className={classes.root}>
               <CardContent>
                 <Box>
-                  <Box className={classes.center} display="flex">
-                    <Box mr={2}>
-                      <Avatar record={record} />
+                  <Box mb={2}>
+                    <Avatar record={record} />
+                  </Box>
+                  <Box flex="1" mt={0}>
+                    <Box display="flex">
+                      <TextInput
+                        className={classes.center}
+                        variant="standard"
+                        label={translate("ra.contacts.first_name")}
+                        source="first_name"
+                      />
+                      <Spacer />
+                      <TextInput
+                        className={classes.center}
+                        variant="standard"
+                        label={translate("ra.contacts.last_name")}
+                        source="last_name"
+                      />
                     </Box>
-                    <Box flex="1" mt={-1}>
-                      <Box display="flex">
-                        <TextInput
-                          className={classes.center}
-                          label={translate("ra.contacts.first_name")}
-                          source="first_name"
-                        />
-                        <Spacer />
-                        <TextInput
-                          className={classes.center}
-                          label={translate("ra.contacts.last_name")}
-                          source="last_name"
-                        />
-                      </Box>
-                      <Box display="flex">
-                        <TextInput
-                          label={translate("ra.contacts.title")}
-                          className={classes.center}
-                          source="title"
-                        />
-                        <Spacer />
-                        {/* <ReferenceInput
+                    <Box display="flex">
+                      <TextInput
+                        variant="standard"
+                        label={translate("ra.contacts.title")}
+                        className={classes.center}
+                        source="title"
+                      />
+                      <Spacer />
+                      {/* <ReferenceInput
                           source="company_id"
                           reference="companies"
                         >
                           <AutocompleteInput optionText="name" />
                         </ReferenceInput> */}
-                      </Box>
-                      <Divider />
-                      <Box mt={2} width="100%">
-                        <TextInput
-                          dir="ltr"
-                          label={translate("ra.contacts.email")}
-                          source="email"
-                          fullWidth
-                        />
-                      </Box>
-                      <Box display="flex">
-                        <TextInput
-                          label={translate("ra.contacts.phoneNumberWork")}
-                          className={classes.center}
-                          source="phone_number1"
-                        />
-                        <Spacer />
-                        <TextInput
-                          label={translate("ra.contacts.phoneNumberPrivate")}
-                          className={classes.center}
-                          source="phone_number2"
-                        />
-                      </Box>
-                      <Divider />
-                      <Box mt={2} width={430}>
-                        <TextInput
-                          label={translate("ra.contacts.background")}
-                          source="background"
-                          multiline
-                          fullWidth
-                        />
-                        <TextInput
-                          label={translate("ra.contacts.avatar")}
-                          source="avatar"
-                          fullWidth
-                        />
-                        <BooleanInput
-                          label={translate("ra.contacts.newsLetter")}
-                          dir="ltr"
-                          className={classes.centerNewsLetter}
-                          source="has_newsletter"
-                        />
-                      </Box>
+                    </Box>
+                    <Box mt={0} width="100%">
+                      <TextInput
+                        dir="ltr"
+                        variant="standard"
+                        label={translate("ra.contacts.email")}
+                        source="email"
+                        fullWidth
+                      />
+                    </Box>
+                    <Box display="flex">
+                      <TextInput
+                        label={translate("ra.contacts.phoneNumberWork")}
+                        variant="standard"
+                        className={classes.center}
+                        source="phone_number1"
+                      />
+                      <Spacer />
+                      <TextInput
+                        label={translate("ra.contacts.phoneNumberPrivate")}
+                        className={classes.center}
+                        variant="standard"
+                        source="phone_number2"
+                      />
+                    </Box>
+                    <Box mt={0}>
+                      <TextInput
+                        label={translate("ra.contacts.background")}
+                        source="background"
+                        variant="standard"
+                        multiline
+                        fullWidth
+                      />
+                      <TextInput
+                        label={translate("ra.contacts.avatar")}
+                        variant="standard"
+                        source="avatar"
+                        fullWidth
+                      />
+                      <BooleanInput
+                        label={translate("ra.contacts.newsLetter")}
+                        dir="ltr"
+                        className={classes.centerNewsLetter}
+                        source="has_newsletter"
+                      />
                     </Box>
                   </Box>
                 </Box>
