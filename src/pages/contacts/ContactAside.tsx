@@ -18,7 +18,14 @@ import TasksIterator from "./TasksIterator";
 export const ContactAside = ({ record, link = "edit" }: any) => {
   const translate = useTranslate();
   return (
-    <Box component={Paper} p={2} ml={2} width={250} minWidth={250}>
+    <Box
+      component={Paper}
+      height="100%"
+      p={2}
+      ml={2}
+      width={250}
+      minWidth={250}
+    >
       <Box textAlign="center" mb={2}>
         {link === "edit" ? (
           <EditButton
