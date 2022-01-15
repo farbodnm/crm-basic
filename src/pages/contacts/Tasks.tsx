@@ -154,7 +154,8 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
           <DialogContent>
             <TextField
               multiline
-              rows={5}
+              rows={3}
+              maxRows={10}
               label={translate("ra.tasks.task")}
               fullWidth
               value={newTask}
@@ -193,7 +194,11 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
             <Button onClick={() => setOpen(false)} color="primary">
               {translate("ra.actions.cancel")}
             </Button>
-            <Button type="submit" color="primary" disabled={disabled}>
+            <Button
+              type="submit"
+              color="primary"
+              disabled={!newTask || disabled}
+            >
               {translate("ra.action.edit")}
             </Button>
           </DialogActions>
