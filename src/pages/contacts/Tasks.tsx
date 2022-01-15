@@ -22,8 +22,8 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/EditTwoTone";
-import DeleteIcon from "@material-ui/icons/CancelTwoTone";
+import EditIcon from "@material-ui/icons/BrushRounded";
+import DeleteIcon from "@material-ui/icons/ClearRounded";
 import { useState } from "react";
 import moment, { Moment } from "moment";
 import jMoment from "moment-jalaali";
@@ -124,12 +124,12 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
             >
               <Tooltip title={translate("ra.tasks.editTask")}>
                 <IconButton size="small" onClick={handleOpenEditDialog}>
-                  <EditIcon />
+                  <EditIcon style={{ fill: "#3a9bdc" }} />
                 </IconButton>
               </Tooltip>
               <Tooltip title={translate("ra.tasks.deleteTasks")}>
                 <IconButton size="small" onClick={handleDelete}>
-                  <DeleteIcon />
+                  <DeleteIcon style={{ fill: "#DC143C" }} />
                 </IconButton>
               </Tooltip>
             </Box>
