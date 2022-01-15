@@ -64,6 +64,15 @@ const fa = {
       dueDate: "موعد",
       minDateMessage: "این تاریخ قابل قبول نیست",
     },
+    notes: {
+      addThisNote: "این پیام را اضافه کن",
+      addANote: "یک پیام اضافه کن",
+      addedaNoteOn: "یک پیام اضافه کرد در",
+      updateNote: "پیام را ویرایش کن",
+      editNote: "پیام را ویرایش کن",
+      deleteNote: "پیام را حذف کن",
+      noteDeleted: "پیام حذف شد",
+    },
     misc: {
       crm: "مدیریت ارتباطات",
       notes: "یادداشت",

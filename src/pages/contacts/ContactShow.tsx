@@ -1,21 +1,24 @@
 import {
+  ReferenceManyField,
   ShowBase,
   ShowProps,
   // TextField,
   // ReferenceField,
   // ReferenceManyField,
   useShowContext,
+  useTranslate,
 } from "react-admin";
 import { Box, Card, CardContent, Typography } from "@material-ui/core";
 
 import Avatar from "./Avatar";
 import { ContactAside } from "./ContactAside";
 // import { LogoField } from '../companies/LogoField';
-// import { NotesIterator } from '../notes';
+import { NotesIterator } from "../../components/notes/NotesIterator";
 import { Contact } from "../../utils/types";
 
 const ContactShowContent = () => {
   const { record, loaded } = useShowContext<Contact>();
+  const translate = useTranslate();
   if (!loaded || !record) return null;
   return (
     <Box mt={2} display="flex">
@@ -29,7 +32,7 @@ const ContactShowContent = () => {
                   {record.first_name} {record.last_name}
                 </Typography>
                 <Typography variant="body2">
-                  {record.title} at{" "}
+                  {record.title} {translate("ra.misc.at")}{" "}
                   {/* <ReferenceField
                     source="company_id"
                     reference="companies"
@@ -49,13 +52,13 @@ const ContactShowContent = () => {
                 </ReferenceField>
               </Box> */}
             </Box>
-            {/* <ReferenceManyField
+            <ReferenceManyField
               target="contact_id"
               reference="contactNotes"
               sort={{ field: "date", order: "DESC" }}
             >
               <NotesIterator showStatus reference="contacts" />
-            </ReferenceManyField> */}
+            </ReferenceManyField>
           </CardContent>
         </Card>
       </Box>
