@@ -5,7 +5,7 @@ import {
   AppBar,
   Box,
   Typography,
-  IconButton,
+  ListItem,
 } from "@material-ui/core";
 import { Link, useRouteMatch } from "react-router-dom";
 import {
@@ -15,21 +15,38 @@ import {
   useTranslate,
   useSetLocale,
 } from "react-admin";
+import TranslateIcon from "@material-ui/icons/TranslateRounded";
 
 import useStyles from "../styles/components/header";
 import { i18nProvider } from "../providers/i18nProvider";
+
+const LangButton = () => {
+  const setLocale = useSetLocale();
+  const classes = useStyles();
+
+  const handleLanguageChange = () => {
+    const newLanguage = i18nProvider.getLocale() === "en" ? "fa" : "en";
+    setLocale(newLanguage);
+  };
+
+  return (
+    <ListItem
+      button
+      className={classes.dropdownMenu}
+      onClick={handleLanguageChange}
+      color="inherit"
+    >
+      <TranslateIcon />
+      {i18nProvider.getLocale() === "fa" ? "فارسی" : "English"}
+    </ListItem>
+  );
+};
 
 const Header = () => {
   const classes = useStyles();
   const translate = useTranslate();
   const match = useRouteMatch(["/contacts", "/companies", "/deals"]);
   const currentPath = match?.path ?? "/";
-  const setLocale = useSetLocale();
-
-  const handleLanguageChange = () => {
-    const newLanguage = i18nProvider.getLocale() === "en" ? "fa" : "en";
-    setLocale(newLanguage);
-  };
 
   return (
     <nav className={classes.root}>
@@ -89,11 +106,8 @@ const Header = () => {
               </Tabs>
             </Box>
             <Box display="flex">
-              <IconButton onClick={handleLanguageChange} color="inherit">
-                {i18nProvider.getLocale()}
-              </IconButton>
               <LoadingIndicator />
-              <UserMenu logout={<Logout button />} />
+              <UserMenu children={<LangButton />} logout={<Logout button />} />
             </Box>
           </Box>
         </Toolbar>

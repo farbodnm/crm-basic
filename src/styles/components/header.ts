@@ -22,4 +22,9 @@ export default makeStyles((theme) => ({
       textShadow: "0 0 5px #FFFFFF, 0 0 10px #FFFFFF, 0 0 20px #FFFFFF",
     },
   },
+  dropdownMenu: {
+    color: "rgba(0, 0, 0, 0.54)",
+    justifyContent: "space-between",
+    fontSize: "1rem",
+  },
 }));
