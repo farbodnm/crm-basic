@@ -48,6 +48,8 @@ const fa = {
       createNewTask: "ساخت کار جدید",
       task: "کار",
       editTask: "ویرایش کار",
+      taskDeleted: "کار با موقیت حذف شد",
+      deleteTasks: "حذف کار",
     },
     companies: {
       companies: "شرکت ها",
