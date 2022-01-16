@@ -12,4 +12,7 @@ export default makeStyles((theme) => ({
   centerNewsLetter: {
     marginLeft: "0",
   },
+  centerReference: {
+    margin: "0 auto",
+  },
 }));

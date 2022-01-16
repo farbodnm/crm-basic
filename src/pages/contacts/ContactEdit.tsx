@@ -2,8 +2,8 @@ import {
   EditBase,
   EditProps,
   TextInput,
-  // ReferenceInput,
-  // AutocompleteInput,
+  ReferenceInput,
+  AutocompleteInput,
   BooleanInput,
   FormWithRedirect,
   Toolbar,
@@ -85,12 +85,16 @@ const ContactEditContent = () => {
                         source="title"
                       />
                       <Spacer />
-                      {/* <ReferenceInput
-                          source="company_id"
-                          reference="companies"
-                        >
-                          <AutocompleteInput optionText="name" />
-                        </ReferenceInput> */}
+                      <ReferenceInput
+                        variant="standard"
+                        fullWidth
+                        className={classes.centerReference}
+                        label={translate("ra.contacts.company")}
+                        source="company_id"
+                        reference="companies"
+                      >
+                        <AutocompleteInput optionText="name" />
+                      </ReferenceInput>
                     </Box>
                     <Box mt={0} width="100%">
                       <TextInput

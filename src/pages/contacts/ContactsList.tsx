@@ -2,8 +2,8 @@ import {
   List as RaList,
   ListProps,
   SimpleListLoading,
-  // ReferenceField,
-  // TextField,
+  ReferenceField,
+  TextField,
   useListContext,
   ExportButton,
   TopToolbar,
@@ -79,15 +79,15 @@ const ContactListContent = () => {
                 <Box flex={1} display="flex">
                   <Box dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
                     {contact.title} {translate("ra.misc.at")}{" "}
-                    {/* <ReferenceField
-                    record={contact}
-                    source="company_id"
-                    reference="companies"
-                    basePath="/companies"
-                    link={`/company/${contact.company_id}/show`}
-                  >
-                    <TextField source="name" />
-                  </ReferenceField>{" "} */}
+                    <ReferenceField
+                      record={contact}
+                      source="company_id"
+                      reference="companies"
+                      basePath="/companies"
+                      link={false}
+                    >
+                      <TextField source="name" />
+                    </ReferenceField>{" "}
                     {contact.nb_notes &&
                       `- ${contact.nb_notes} ${translate("ra.misc.notes")}`}
                   </Box>

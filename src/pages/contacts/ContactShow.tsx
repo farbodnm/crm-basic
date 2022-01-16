@@ -2,9 +2,8 @@ import {
   ReferenceManyField,
   ShowBase,
   ShowProps,
-  // TextField,
-  // ReferenceField,
-  // ReferenceManyField,
+  TextField,
+  ReferenceField,
   useShowContext,
   useTranslate,
 } from "react-admin";
@@ -12,7 +11,7 @@ import { Box, Card, CardContent, Typography } from "@material-ui/core";
 
 import Avatar from "./Avatar";
 import { ContactAside } from "./ContactAside";
-// import { LogoField } from '../companies/LogoField';
+import { LogoField } from "../companies/LogoField";
 import { NotesIterator } from "../../components/notes/NotesIterator";
 import { Contact } from "../../utils/types";
 
@@ -33,16 +32,16 @@ const ContactShowContent = () => {
                 </Typography>
                 <Typography variant="body2">
                   {record.title} {translate("ra.misc.at")}{" "}
-                  {/* <ReferenceField
+                  <ReferenceField
                     source="company_id"
                     reference="companies"
                     link="show"
                   >
                     <TextField source="name" />
-                  </ReferenceField> */}
+                  </ReferenceField>
                 </Typography>
               </Box>
-              {/* <Box>
+              <Box>
                 <ReferenceField
                   source="company_id"
                   reference="companies"
@@ -50,7 +49,7 @@ const ContactShowContent = () => {
                 >
                   <LogoField />
                 </ReferenceField>
-              </Box> */}
+              </Box>
             </Box>
             <ReferenceManyField
               target="contact_id"

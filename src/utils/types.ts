@@ -15,7 +15,7 @@ export interface Company extends Record {
   website: string;
   phone_number: string;
   address: string;
-  zipcode: string;
+  postalcode: string;
   city: string;
   stateAbbr: string;
   nb_contacts: number;

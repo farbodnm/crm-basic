@@ -2,8 +2,8 @@ import {
   CreateBase,
   CreateProps,
   TextInput,
-  // ReferenceInput,
-  // AutocompleteInput,
+  ReferenceInput,
+  AutocompleteInput,
   BooleanInput,
   FormWithRedirect,
   Toolbar,
@@ -68,9 +68,16 @@ const Renderer = (formProps: any) => {
                 source="title"
               />
               <Spacer />
-              {/* <ReferenceInput source="company_id" reference="companies">
+              <ReferenceInput
+                variant="standard"
+                fullWidth
+                className={classes.centerReference}
+                label={translate("ra.contacts.company")}
+                source="company_id"
+                reference="companies"
+              >
                 <AutocompleteInput optionText="name" />
-              </ReferenceInput> */}
+              </ReferenceInput>
             </Box>
             <Box width="100%">
               <TextInput

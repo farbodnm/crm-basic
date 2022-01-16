@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   paper: {
-    paddingLeft: "8px",
-    paddingRight: "8px",
-    paddingBottom: "8px",
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
 }));
