@@ -37,7 +37,7 @@ export const generateCompanies = (db: Db): Company[] => {
       website: internet.url(),
       phone_number: phone.phoneNumber(),
       address: address.streetAddress(),
-      zipcode: address.zipCode(),
+      postalcode: address.zipCode(),
       city: address.city(),
       stateAbbr: address.stateAbbr(),
       nb_contacts: 0,

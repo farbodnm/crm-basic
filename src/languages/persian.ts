@@ -36,6 +36,7 @@ const fa = {
       phoneNumberPrivate: "شماره تماس شخصی",
       avatar: "آواتار",
       newsLetter: "خبرنامه",
+      company: "شرکت",
     },
     tags: {
       tags: "برچسب ها",
@@ -53,6 +54,14 @@ const fa = {
     },
     companies: {
       companies: "شرکت ها",
+      contacts: "مخاطب",
+      contact: "مخاطب",
+      deals: "قرارداد",
+      deal: "قرارداد",
+      editCompany: "ویرایش شرکت",
+      companyInfo: "اطلاعات شرکت",
+      phoneNumber: "شماره تماس",
+      followedBy: "دنبال شده توسط",
     },
     deals: {
       deals: "قرارداد ها",
@@ -72,6 +81,7 @@ const fa = {
       editNote: "پیام را ویرایش کن",
       deleteNote: "پیام را حذف کن",
       noteDeleted: "پیام حذف شد",
+      noteAddedSuccessfuly: "پیام با موقیت اضافه شد",
     },
     misc: {
       crm: "مدیریت ارتباطات",

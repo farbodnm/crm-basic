@@ -10,7 +10,7 @@ const type = ["دیگر", "آگهی نویسی", "ui دیزاین", "دیزای�
 const stages = [
   "opportunity",
   "proposal-sent",
-  "in-negociation",
+  "in-negotiation",
   "won",
   "lost",
   "delayed",
