@@ -10,6 +10,7 @@ import {
   required,
   useCreateContext,
   useTranslate,
+  SelectInput,
 } from "react-admin";
 import { Card, CardContent, Box, Avatar } from "@material-ui/core";
 
@@ -18,12 +19,21 @@ import useStyles from "../../styles/contacts/contactCreate";
 
 const Spacer = () => <Box width={20} component="span" />;
 
+const getCurrentDate = () => {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  return now.toISOString().slice(0, -1);
+};
+
 export const ContactCreate = (props: CreateProps) => (
   <CreateBase
     {...props}
     transform={(data: Contact) => ({
       ...data,
-      last_seen: new Date(),
+      first_seen: getCurrentDate(),
+      last_seen: getCurrentDate(),
+      nb_notes: 0,
+      gender: "مرد",
       tags: [],
     })}
   >
@@ -117,12 +127,28 @@ const Renderer = (formProps: any) => {
                 source="avatar"
                 fullWidth
               />
-              <BooleanInput
-                label={translate("ra.contacts.newsLetter")}
-                dir="ltr"
-                className={classes.centerNewsLetter}
-                source="has_newsletter"
-              />
+              <Box display="flex" position="relative">
+                <ReferenceInput
+                  source="sales_id"
+                  reference="sales"
+                  variant="standard"
+                  label={translate("ra.companies.accountManager")}
+                  formClassName={classes.inline}
+                  helperText={false}
+                >
+                  <SelectInput
+                    optionText={(sales: any) =>
+                      `${sales.first_name} ${sales.last_name}`
+                    }
+                  />
+                </ReferenceInput>
+                <BooleanInput
+                  label={translate("ra.contacts.newsLetter")}
+                  dir="ltr"
+                  className={classes.centerNewsLetter}
+                  source="has_newsletter"
+                />
+              </Box>
             </Box>
           </Box>
         </Box>

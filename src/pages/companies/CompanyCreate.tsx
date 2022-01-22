@@ -34,8 +34,24 @@ export const CompanyCreate = (props: CreateProps) => {
   const classes = useStyles();
   const translate = useTranslate();
 
+  const getCurrentDate = () => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    return now.toISOString().slice(0, -1);
+  };
+
   return (
-    <Create className={classes.center} {...props} actions={false}>
+    <Create
+      className={classes.center}
+      {...props}
+      transform={(data: any) => ({
+        ...data,
+        nb_contacts: 0,
+        nb_deals: 0,
+        created_at: getCurrentDate(),
+      })}
+      actions={false}
+    >
       <SimpleForm component={CustomLayout} redirect="show">
         <TextInput
           variant="standard"

@@ -88,7 +88,7 @@ const ContactListContent = () => {
                     >
                       <TextField source="name" />
                     </ReferenceField>{" "}
-                    {contact.nb_notes &&
+                    {contact.nb_notes !== 0 &&
                       `- ${contact.nb_notes} ${translate("ra.misc.notes")}`}
                   </Box>
                   <TagsList record={contact} />

@@ -61,7 +61,7 @@ const fa = {
       editCompany: "ویرایش شرکت",
       companyInfo: "اطلاعات شرکت",
       phoneNumber: "شماره تماس",
-      followedBy: "دنبال شده توسط",
+      followedBy: "مدیر حساب",
       newCompany: "شرکت جدید",
       showCompany: "نمایش شرکت",
       name: "نام",

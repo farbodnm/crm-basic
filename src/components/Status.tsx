@@ -9,7 +9,7 @@ const getStatusColor = (status: String) =>
     ? "#e88b7d"
     : status === "in-contract"
     ? "#a4e87d"
-    : "#000";
+    : "#c0c0c0";
 
 const Status = ({ status }: { status: string }) => (
   <Box

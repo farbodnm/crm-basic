@@ -9,6 +9,7 @@ import {
   Toolbar,
   useEditContext,
   useTranslate,
+  SelectInput,
 } from "react-admin";
 import { Card, CardContent, Box } from "@material-ui/core";
 import omit from "lodash/omit";
@@ -134,12 +135,28 @@ const ContactEditContent = () => {
                         source="avatar"
                         fullWidth
                       />
-                      <BooleanInput
-                        label={translate("ra.contacts.newsLetter")}
-                        dir="ltr"
-                        className={classes.centerNewsLetter}
-                        source="has_newsletter"
-                      />
+                      <Box display="flex" position="relative">
+                        <ReferenceInput
+                          source="sales_id"
+                          reference="sales"
+                          variant="standard"
+                          label={translate("ra.companies.accountManager")}
+                          formClassName={classes.inline}
+                          helperText={false}
+                        >
+                          <SelectInput
+                            optionText={(sales: any) =>
+                              `${sales.first_name} ${sales.last_name}`
+                            }
+                          />
+                        </ReferenceInput>
+                        <BooleanInput
+                          label={translate("ra.contacts.newsLetter")}
+                          dir="ltr"
+                          className={classes.centerNewsLetter}
+                          source="has_newsletter"
+                        />
+                      </Box>
                     </Box>
                   </Box>
                 </Box>

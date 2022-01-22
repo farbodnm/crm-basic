@@ -67,7 +67,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
 
       <Box mb={3}>
         <Typography variant="body2">
-          {record.gender === "male"
+          {record.gender === "مرد"
             ? translate("ra.contacts.male")
             : translate("ra.contacts.female")}
         </Typography>
