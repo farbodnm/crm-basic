@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export default makeStyles((theme) => ({
   paper: {
     height: 180,
-    width: 322,
+    width: 329.3,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
