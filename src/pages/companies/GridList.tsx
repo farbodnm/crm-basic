@@ -11,10 +11,11 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     width: 1008,
     gap: "10px",
+    padding: 10,
   },
   paper: {
     height: 200,
-    width: 194,
+    width: 322,
     display: "flex",
     flexDirection: "column",
     backgroundColor: theme.palette.grey[200],

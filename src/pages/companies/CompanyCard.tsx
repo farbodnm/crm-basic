@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Paper, Typography, Link as LinkMui } from "@material-ui/core";
+import { Box, Typography, Link as LinkMui } from "@material-ui/core";
 import ContactsIcon from "@material-ui/icons/AccountCircle";
 import DealIcon from "@material-ui/icons/MonetizationOn";
 import { linkToRecord, SelectField, useTranslate } from "react-admin";
@@ -13,17 +12,14 @@ import useStyles from "../../styles/companies/companyCard";
 export const CompanyCard = ({ record }: { record: Company }) => {
   const classes = useStyles();
   const translate = useTranslate();
-  const [elevation, setElevation] = useState(1);
 
   return (
     <LinkMui
       component={Link}
       to={linkToRecord("/companies", record.id, "show")}
       underline="none"
-      onMouseEnter={() => setElevation(3)}
-      onMouseLeave={() => setElevation(1)}
     >
-      <Paper className={classes.paper} elevation={elevation}>
+      <Box className={classes.paper}>
         <div className={classes.identity}>
           <CompanyAvatar record={record} />
           <div className={classes.name}>
@@ -64,7 +60,7 @@ export const CompanyCard = ({ record }: { record: Company }) => {
             </div>
           </div>
         </div>
-      </Paper>
+      </Box>
     </LinkMui>
   );
 };

@@ -2,12 +2,16 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   paper: {
-    height: 200,
-    width: 193.5,
+    height: 180,
+    width: 322,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     padding: "1em",
+    borderRadius: 5,
+    "&:hover": {
+      backgroundColor: "#f5f5f5",
+    },
   },
   identity: {
     display: "flex",

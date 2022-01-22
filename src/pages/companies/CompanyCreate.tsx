@@ -9,25 +9,15 @@ import {
   useTranslate,
 } from "react-admin";
 import { Box, CardContent, Avatar } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import BusinessIcon from "@material-ui/icons/Business";
 import clsx from "clsx";
 
 import { sectors, sizes } from "./info";
-
-const useStyles = makeStyles({
-  inline: {
-    display: "inline-block",
-    marginLeft: "1em",
-    "&.first-child": {
-      marginLeft: 0,
-    },
-  },
-});
+import useStyles from "../../styles/companies/companyCreate";
 
 const CustomLayout = (props: any) => (
   <CardContent>
-    <Box display="flex">
+    <Box>
       <Box paddingTop={1}>
         <Avatar>
           <BusinessIcon />
@@ -45,7 +35,7 @@ export const CompanyCreate = (props: CreateProps) => {
   const translate = useTranslate();
 
   return (
-    <Create {...props} actions={false}>
+    <Create className={classes.center} {...props} actions={false}>
       <SimpleForm component={CustomLayout} redirect="show">
         <TextInput
           variant="standard"
@@ -96,6 +86,7 @@ export const CompanyCreate = (props: CreateProps) => {
         <TextInput
           variant="standard"
           dir="ltr"
+          label={translate("ra.companies.website")}
           source="website"
           fullWidth
           helperText={false}
@@ -103,6 +94,7 @@ export const CompanyCreate = (props: CreateProps) => {
         <TextInput
           variant="standard"
           dir="ltr"
+          label={translate("ra.companies.linkedIn")}
           source="linkedIn"
           fullWidth
           helperText={false}
@@ -115,6 +107,7 @@ export const CompanyCreate = (props: CreateProps) => {
         />
         <TextInput
           source="phone_number"
+          variant="standard"
           label={translate("ra.companies.phoneNumber")}
           formClassName={clsx(classes.inline, "first-child")}
           helperText={false}
@@ -122,6 +115,7 @@ export const CompanyCreate = (props: CreateProps) => {
         <ReferenceInput
           source="sales_id"
           reference="sales"
+          variant="standard"
           label={translate("ra.companies.accountManager")}
           formClassName={classes.inline}
           helperText={false}

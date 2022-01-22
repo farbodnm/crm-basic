@@ -76,13 +76,6 @@ const Header = () => {
                 indicatorColor="primary"
               >
                 <Tab
-                  label={translate("ra.misc.dashboard")}
-                  component={Link}
-                  to="/"
-                  value="/"
-                  className={classes.tabs}
-                />
-                <Tab
                   label={translate("ra.contacts.contacts")}
                   component={Link}
                   to="/contacts"

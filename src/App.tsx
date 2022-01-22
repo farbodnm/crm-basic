@@ -39,7 +39,6 @@ const App = () => (
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       layout={Layout}
-      // dashboard={Dashboard}
       theme={theme}
     >
       <Resource name="contacts" {...contacts} />

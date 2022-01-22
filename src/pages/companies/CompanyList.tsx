@@ -6,6 +6,7 @@ import {
   CreateButton,
   Pagination,
   useGetIdentity,
+  useTranslate,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,13 +21,15 @@ const useActionStyles = makeStyles((theme) => ({
 
 const CompanyListActions = (props: any) => {
   const classes = useActionStyles();
+  const translate = useTranslate();
+
   return (
     <TopToolbar>
       <ExportButton />
       <CreateButton
         basePath="/companies"
         variant="contained"
-        label="New Company"
+        label={translate("ra.companies.newCompany")}
         className={classes.createButton}
       />
     </TopToolbar>
@@ -42,9 +45,8 @@ export const CompanyList = (props: ListProps) => {
       aside={<CompanyListFilter />}
       filterDefaultValues={{ sales_id: identity?.id }}
       pagination={<Pagination rowsPerPageOptions={[15, 25, 50, 100]} />}
-      perPage={25}
+      perPage={15}
       sort={{ field: "name", order: "ASC" }}
-      component="div"
     >
       <GridList />
     </List>

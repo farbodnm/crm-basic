@@ -6,13 +6,13 @@ import {
   ReferenceManyField,
   SelectField,
   useShowContext,
-  // useRecordContext,
+  useRecordContext,
   useListContext,
   useTranslate,
 } from "react-admin";
 import {
   Box,
-  // Button,
+  Button,
   Card,
   CardContent,
   Typography,
@@ -25,7 +25,7 @@ import {
   Tab,
   Divider,
 } from "@material-ui/core";
-// import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { Link as RouterLink } from "react-router-dom";
 import { formatDistance } from "date-fns-jalali";
 import { faIR, enUS } from "date-fns/locale";
@@ -68,7 +68,7 @@ const TabPanel = (props: TabPanelProps) => {
 
 const ContactsIterator = () => {
   const { data, ids, loaded } = useListContext<Contact>();
-  // const record = useRecordContext();
+  const record = useRecordContext();
   const translate = useTranslate();
   const now = Date.now();
 
@@ -113,29 +113,32 @@ const ContactsIterator = () => {
           );
         })}
       </List>
+      <Box textAlign="center" mt={1}>
+        <CreateRelatedContactButton record={record} />
+      </Box>
     </Box>
   );
 };
 
-// const CreateRelatedContactButton = ({ record }: any) => {
-//   const translate = useTranslate();
+const CreateRelatedContactButton = ({ record }: any) => {
+  const translate = useTranslate();
 
-//   return (
-//     <Button
-//       component={RouterLink}
-//       to={{
-//         pathname: "/contacts/create",
-//         state: { record: { company_id: record.id } },
-//       }}
-//       color="primary"
-//       variant="contained"
-//       size="small"
-//       startIcon={<PersonAddIcon />}
-//     >
-//       {translate("ra.copmanies.addContact")}
-//     </Button>
-//   );
-// };
+  return (
+    <Button
+      component={RouterLink}
+      to={{
+        pathname: "/contacts/create",
+        state: { record: { company_id: record.id } },
+      }}
+      color="primary"
+      variant="contained"
+      size="small"
+      startIcon={<PersonAddIcon />}
+    >
+      {translate("ra.companies.addContact")}
+    </Button>
+  );
+};
 
 // const DealsIterator = () => {
 //   const { data, ids, loaded } = useListContext<Deal>();
