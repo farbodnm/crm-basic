@@ -143,7 +143,7 @@ export const ContactsListFilter = () => {
           icon={<SupervisorAccountIcon />}
         >
           <FilterListItem
-            label="Me"
+            label={translate("ra.misc.me")}
             value={{ sales_id: identity && identity.id }}
           />
         </FilterList>

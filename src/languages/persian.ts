@@ -77,6 +77,7 @@ const fa = {
       accountManager: "مدیر حساب",
       sizes: "اندازه",
       sectors: "بخش",
+      addContact: "اضافه کردن مخاطب برای شرکت",
     },
     deals: {
       deals: "قرارداد ها",
@@ -106,6 +107,7 @@ const fa = {
       account: "کاربر",
       at: "در",
       ago: "پیش",
+      me: "من",
     },
     action: {
       add_filter: "اضافه‌کردن فیلتر",
