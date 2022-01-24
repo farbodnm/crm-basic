@@ -57,7 +57,7 @@ export const TagsListEdit = ({ record }: { record: Contact }) => {
   // const { data: tags, loaded } = useGetMany("tags", record.tags, {
   //   enabled: record.tags && record.tags.length > 0,
   // });
-  const { data: tags } = useGetMany("tags", record.tags, {
+  const { data: tags, loaded } = useGetMany("tags", record.tags, {
     enabled: record.tags && record.tags.length > 0,
   });
   const [update] = useUpdate();
@@ -126,10 +126,9 @@ export const TagsListEdit = ({ record }: { record: Contact }) => {
     );
   };
 
-  // if (!loaded) return null;
   return (
     <>
-      {tags && (
+      {tags && loaded && (
         <>
           {tags.map((tag) => (
             <Box mt={1} mb={1} key={tag.id}>

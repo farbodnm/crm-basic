@@ -34,7 +34,7 @@ export const generateDeals = (db: Db): Deal[] => {
       type: random.arrayElement(type),
       stage: random.arrayElement(stages),
       description: lorem.paragraphs(datatype.number({ min: 1, max: 4 })),
-      amount: datatype.number(1000) * 100,
+      amount: datatype.number(1000) * 1000000,
       created_at: created_at,
       updated_at: randomDate(new Date(created_at)).toISOString(),
       start_at: randomDate(

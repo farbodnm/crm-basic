@@ -13,6 +13,7 @@ import { i18nProvider } from "./providers/i18nProvider";
 import Layout from "./Layout";
 import contacts from "./pages/contacts";
 import companies from "./pages/companies";
+import deals from "./pages/deals";
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
@@ -43,6 +44,7 @@ const App = () => (
     >
       <Resource name="contacts" {...contacts} />
       <Resource name="companies" {...companies} />
+      <Resource name="deals" {...deals} />
       <Resource name="contactNotes" />
       <Resource name="dealNotes" />
       <Resource name="tasks" list={ListGuesser} />

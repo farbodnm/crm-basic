@@ -8,9 +8,12 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     padding: "1em",
-    borderRadius: 5,
+    border: "1px solid #fff",
+    transition: "0.5s",
     "&:hover": {
-      backgroundColor: "#f5f5f5",
+      // backgroundColor: "#f5f5f5",
+      border: "1px solid #1976d2",
+      // boxShadow: "0 0 5px #1976d2, 0 0 20px #1976d2, 0 0 70px #1976d2",
     },
   },
   identity: {
