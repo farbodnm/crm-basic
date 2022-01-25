@@ -126,7 +126,7 @@ const fa = {
       notes: "یادداشت",
       on: "در",
       due: "تا",
-      account: "کاربر",
+      account: "حساب",
       at: "در",
       ago: "پیش",
       me: "من",
