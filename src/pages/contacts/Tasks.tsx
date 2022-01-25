@@ -31,6 +31,7 @@ import JalaliUtils from "@date-io/jalaali";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 import RoundButton from "../../components/RoundButton";
+import useStyles from "../../styles/contacts/tasks";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -59,6 +60,7 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const [update] = useUpdate();
+  const classes = useStyles();
 
   const handleOpenEditDialog = () => {
     setOpen(true);
@@ -123,13 +125,21 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
               style={{ visibility: isHover ? "visible" : "hidden" }}
             >
               <Tooltip title={translate("ra.tasks.editTask")}>
-                <IconButton size="small" onClick={handleOpenEditDialog}>
-                  <EditIcon style={{ fill: "#3a9bdc" }} />
+                <IconButton
+                  className={isHover ? classes.iconEdit : ""}
+                  size="small"
+                  onClick={handleOpenEditDialog}
+                >
+                  <EditIcon style={{ fill: "#333" }} />
                 </IconButton>
               </Tooltip>
               <Tooltip title={translate("ra.tasks.deleteTasks")}>
-                <IconButton size="small" onClick={handleDelete}>
-                  <DeleteIcon style={{ fill: "#DC143C" }} />
+                <IconButton
+                  className={isHover ? classes.iconDelete : ""}
+                  size="small"
+                  onClick={handleDelete}
+                >
+                  <DeleteIcon style={{ fill: "#333" }} />
                 </IconButton>
               </Tooltip>
             </Box>

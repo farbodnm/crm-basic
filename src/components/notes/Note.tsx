@@ -98,12 +98,20 @@ export const Note = ({
           style={{ visibility: isHover && !isEditing ? "visible" : "hidden" }}
         >
           <Tooltip title={translate("ra.notes.editNote")}>
-            <IconButton size="small" onClick={handleEnterEditMode}>
+            <IconButton
+              className={isHover ? classes.iconEdit : ""}
+              size="small"
+              onClick={handleEnterEditMode}
+            >
               <EditIcon style={{ fill: "#3a9bdc" }} />
             </IconButton>
           </Tooltip>
           <Tooltip title={translate("ra.notes.deleteNote")}>
-            <IconButton size="small" onClick={handleDelete}>
+            <IconButton
+              className={isHover ? classes.iconDelete : ""}
+              size="small"
+              onClick={handleDelete}
+            >
               <DeleteIcon style={{ fill: "#DC143C" }} />
             </IconButton>
           </Tooltip>

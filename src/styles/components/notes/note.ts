@@ -21,6 +21,14 @@ export default makeStyles((theme) => ({
     justifyContent: "flex-end",
     marginTop: theme.spacing(1),
   },
+  iconEdit: {
+    animation: `$keyframes1 250ms ${theme.transitions.easing.easeInOut} infinite`,
+    transformOrigin: "50% 10%",
+  },
+  iconDelete: {
+    animation: `$keyframes1 250ms ${theme.transitions.easing.easeInOut} infinite`,
+    transformOrigin: "30% 5%",
+  },
   cancel: {
     marginRight: theme.spacing(1),
   },
@@ -47,5 +55,21 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
+  },
+  "@keyframes keyframes1": {
+    "10%": {
+      transform: "rotate(-1deg)",
+    },
+    "50%": {
+      transform: "rotate(1.5deg)",
+    },
+  },
+  "@keyframes keyframes2": {
+    "10%": {
+      transform: "rotate(1deg)",
+    },
+    "20%": {
+      transform: "rotate(-1.5deg)",
+    },
   },
 }));
