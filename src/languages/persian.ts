@@ -81,7 +81,7 @@ const fa = {
     },
     deals: {
       deals: "قرارداد ها",
-      myCompanies: "شرکت های من",
+      myDeals: "قرارداد های من",
       newDeal: "قرارداد جدید",
       start: "شروع قرارداد",
       budget: "بودجه",

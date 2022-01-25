@@ -39,7 +39,7 @@ export const OnlyMineInput = ({ alwaysOn }: { alwaysOn: boolean }) => {
             name="checkedC"
           />
         }
-        label={translate("ra.deals.myCompanies")}
+        label={translate("ra.deals.myDeals")}
       />
     </div>
   );
