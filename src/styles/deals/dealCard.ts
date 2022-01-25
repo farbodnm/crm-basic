@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core";
 export default makeStyles((theme) => ({
   root: {
     marginBottom: theme.spacing(1),
-    border: "1px solid #ccc",
+    border: "1px solid #eee",
     transition: "0.5s",
+    borderRadius: 3,
     "&:hover": {
       border: "1px solid #1976d2",
     },

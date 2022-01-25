@@ -8,7 +8,8 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     padding: "1em",
-    border: "1px solid #fff",
+    border: "1px solid #eee",
+    borderRadius: 5,
     transition: "0.5s",
     "&:hover": {
       // backgroundColor: "#f5f5f5",
