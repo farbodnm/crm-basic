@@ -1,5 +1,5 @@
 import {
-  Create,
+  Edit,
   SimpleForm,
   TextInput,
   SelectInput,
@@ -9,7 +9,6 @@ import {
   required,
   useRedirect,
   useDataProvider,
-  CreateProps,
   useTranslate,
   useInput,
   InputProps,
@@ -58,7 +57,14 @@ const InputDatePicker = (props: InputProps<any>) => {
   );
 };
 
-export const DealCreate = ({ open, ...props }: { open: boolean }) => {
+export const DealEdit = ({
+  open,
+  id,
+  ...props
+}: {
+  open: boolean;
+  id: any;
+}) => {
   const classes = useStyles();
   const redirect = useRedirect();
   const dataProvider = useDataProvider();
@@ -89,7 +95,7 @@ export const DealCreate = ({ open, ...props }: { open: boolean }) => {
             .map((oldDeal) =>
               dataProvider.update("deals", {
                 id: oldDeal.id,
-                data: { index: oldDeal.index + 1 },
+                data: { index: oldDeal.index - 1 },
                 previousData: oldDeal,
               })
             )
@@ -100,9 +106,10 @@ export const DealCreate = ({ open, ...props }: { open: boolean }) => {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogContent>
-        <Create
+        <Edit
           className={classes.root}
           onSuccess={onSuccess}
+          id={id}
           {...props}
           transform={(data: any) => ({
             ...data,
@@ -201,7 +208,7 @@ export const DealCreate = ({ open, ...props }: { open: boolean }) => {
               onChange={(e) => handleDateChange(e)}
             />
           </SimpleForm>
-        </Create>
+        </Edit>
       </DialogContent>
     </Dialog>
   );
