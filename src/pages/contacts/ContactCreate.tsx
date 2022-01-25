@@ -135,6 +135,7 @@ const Renderer = (formProps: any) => {
                   label={translate("ra.companies.accountManager")}
                   formClassName={classes.inline}
                   helperText={false}
+                  validate={[required()]}
                 >
                   <SelectInput
                     optionText={(sales: any) =>

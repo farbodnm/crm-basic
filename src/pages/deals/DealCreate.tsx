@@ -160,6 +160,7 @@ export const DealCreate = (props: CreateProps) => {
           helperText={false}
         >
           <SelectInput
+            validate={[required()]}
             optionText={(sales: any) =>
               `${sales.first_name} ${sales.last_name}`
             }
