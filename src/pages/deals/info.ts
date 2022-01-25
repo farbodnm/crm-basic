@@ -1,10 +1,10 @@
 export const stageNames = {
-  opportunity: "فرصت",
-  "proposal-sent": "طرح پیشنهادی ارسال شد",
-  "in-negotiation": "درحال مذاکره",
-  won: "موفق شده",
-  lost: "شکست خورده",
-  delayed: "تاخیر افتاده",
+  opportunity: "ra.deals.opportunity",
+  "proposal-sent": "ra.deals.proposalSent",
+  "in-negotiation": "ra.deals.inNegotiation",
+  won: "ra.deals.won",
+  lost: "ra.deals.lost",
+  delayed: "ra.deals.delayed",
 };
 
 export const stages = [
@@ -22,6 +22,11 @@ export const stageChoices = stages.map((type) => ({
   name: stageNames[type],
 }));
 
-const types = ["دیگر", "آگهی نویسی", "ui دیزاین", "دیزاین وبسایت"];
+const types = [
+  "ra.deals.printWriting",
+  "ra.deals.uiDesign",
+  "ra.deals.websiteDesign",
+  "ra.deals.others",
+];
 
 export const typeChoices = types.map((type) => ({ id: type, name: type }));

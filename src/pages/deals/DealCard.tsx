@@ -1,16 +1,18 @@
-import { ReferenceField, useRedirect } from "react-admin";
+import { ReferenceField, useRedirect, useTranslate } from "react-admin";
 import { Card, Typography, Box } from "@material-ui/core";
 import { Draggable } from "react-beautiful-dnd";
 
 import { Deal } from "../../utils/types";
 import { LogoField } from "../companies/LogoField";
 import useStyles from "../../styles/deals/dealCard";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 export const DealCard = ({ deal, index }: { deal: Deal; index: number }) => {
   const classes = useStyles();
   const redirect = useRedirect();
-  if (!deal) return null;
+  const translate = useTranslate();
 
+  if (!deal) return null;
   const handleClick = () => {
     redirect(`/deals/${deal.id}/show`);
   };
@@ -54,16 +56,19 @@ export const DealCard = ({ deal, index }: { deal: Deal; index: number }) => {
               </Box>
               <Box display="flex" justifyContent="space-between">
                 <Typography variant="caption" color="textSecondary">
-                  {deal.amount.toLocaleString("fa-IR", {
-                    notation: "compact",
-                    style: "currency",
-                    currency: "IRR",
-                    currencyDisplay: "narrowSymbol",
-                    minimumSignificantDigits: 3,
-                  })}
+                  {deal.amount.toLocaleString(
+                    i18nProvider.getLocale() === "fa" ? "fa-IR" : "en-US",
+                    {
+                      notation: "compact",
+                      style: "currency",
+                      currency: "IRR",
+                      currencyDisplay: "narrowSymbol",
+                      minimumSignificantDigits: 3,
+                    }
+                  )}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  {deal.type}
+                  {translate(deal.type)}
                 </Typography>
               </Box>
             </div>

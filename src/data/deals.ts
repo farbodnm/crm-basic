@@ -5,7 +5,12 @@ import { Db, Deal } from "../utils/types";
 import { randomDate } from "../utils/fakerFunctions";
 import { datatype } from "faker";
 
-const type = ["دیگر", "آگهی نویسی", "ui دیزاین", "دیزاین وبسایت"];
+const type = [
+  "ra.deals.others",
+  "ra.deals.printWriting",
+  "ra.deals.uiDesign",
+  "ra.deals.websiteDesign",
+];
 
 const stages = [
   "opportunity",

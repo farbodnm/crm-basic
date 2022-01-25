@@ -13,6 +13,9 @@ import {
   useTranslate,
   useInput,
   InputProps,
+  SelectArrayInput,
+  FormDataConsumer,
+  ReferenceArrayInput,
 } from "react-admin";
 import moment, { Moment } from "moment";
 import jMoment from "moment-jalaali";
@@ -98,7 +101,6 @@ export const DealCreate = (props: CreateProps) => {
         ...data,
         created_at: getCurrentDate(),
         updated_at: getCurrentDate(),
-        // start_at: selectedDate,
       })}
     >
       <SimpleForm initialValues={{ index: 0 }}>
@@ -128,6 +130,26 @@ export const DealCreate = (props: CreateProps) => {
         >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
+        <FormDataConsumer fullWidth>
+          {({ formData, ...rest }) => (
+            <ReferenceArrayInput
+              source="contact_ids"
+              reference="contacts"
+              filter={{ company_id: formData.company_id }}
+              label={translate("ra.deals.contacts")}
+              disabled={!formData.company_id}
+              {...rest}
+            >
+              <SelectArrayInput
+                optionText={(contacts: any) =>
+                  `${contacts.first_name} ${contacts.last_name}`
+                }
+                variant="standard"
+                helperText={false}
+              />
+            </ReferenceArrayInput>
+          )}
+        </FormDataConsumer>
         <SelectInput
           variant="standard"
           source="stage"
@@ -135,11 +157,10 @@ export const DealCreate = (props: CreateProps) => {
           choices={stageChoices}
           fullWidth
           validate={[required()]}
-          defaultValue="opportunity"
         />
         <SelectInput
           variant="standard"
-          label={"ra.deals.type"}
+          label={translate("ra.deals.type")}
           source="type"
           choices={typeChoices}
           validate={[required()]}
@@ -150,7 +171,6 @@ export const DealCreate = (props: CreateProps) => {
           source="amount"
           label={translate("ra.deals.amount")}
           fullWidth
-          defaultValue={0}
         />
         <ReferenceInput
           source="sales_id"

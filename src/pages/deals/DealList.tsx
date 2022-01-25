@@ -7,6 +7,7 @@ import {
   SearchInput,
   TopToolbar,
   useGetIdentity,
+  useTranslate,
 } from "react-admin";
 import { Route } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,6 +28,8 @@ const useActionStyles = makeStyles((theme) => ({
 }));
 const DealActions = () => {
   const classes = useActionStyles();
+  const translate = useTranslate();
+
   return (
     <TopToolbar>
       <FilterButton />
@@ -34,7 +37,7 @@ const DealActions = () => {
       <CreateButton
         basePath="/deals"
         variant="contained"
-        label="New Deal"
+        label={translate("ra.deals.newDeal")}
         className={classes.createButton}
       />
     </TopToolbar>

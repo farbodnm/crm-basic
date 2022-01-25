@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Droppable } from "react-beautiful-dnd";
-import { Identifier, RecordMap } from "react-admin";
+import { Identifier, RecordMap, useTranslate } from "react-admin";
 
 import { DealCard } from "./DealCard";
 import { stageNames } from "./info";
@@ -42,11 +42,13 @@ export const DealColumn = ({
   data: RecordMap<Deal>;
 }) => {
   const classes = useStyles();
+  const translate = useTranslate();
+
   return (
     <div className={classes.root}>
       <Typography align="center" variant="subtitle1">
         {/* @ts-ignore */}
-        {stageNames[stage]}
+        {translate(stageNames[stage])}
       </Typography>
       <Droppable droppableId={stage}>
         {(droppableProvided, snapshot) => (
