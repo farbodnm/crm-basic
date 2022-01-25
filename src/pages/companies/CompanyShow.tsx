@@ -36,13 +36,9 @@ import TagsList from "../contacts/TagsList";
 import { sizes } from "./info";
 import { LogoField } from "./LogoField";
 import { CompanyAside } from "./CompanyAside";
-import {
-  Company,
-  //  Deal,
-  Contact,
-} from "../../utils/types";
+import { Company, Deal, Contact } from "../../utils/types";
 import { i18nProvider } from "../../providers/i18nProvider";
-// import { stageNames } from "../deals/stages";
+import { stageNames } from "../deals/info";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -140,61 +136,61 @@ const CreateRelatedContactButton = ({ record }: any) => {
   );
 };
 
-// const DealsIterator = () => {
-//   const { data, ids, loaded } = useListContext<Deal>();
-//   const translate = useTranslate();
-//   const now = Date.now();
+const DealsIterator = () => {
+  const { data, ids, loaded } = useListContext<Deal>();
+  const translate = useTranslate();
+  const now = Date.now();
 
-//   if (!loaded) return null;
-//   return (
-//     <Box>
-//       <List>
-//         {ids.map((id) => {
-//           const deal = data[id];
-//           return (
-//             <ListItem
-//               button
-//               key={id}
-//               component={RouterLink}
-//               to={`/deals/${id}/show`}
-//             >
-//               <ListItemText
-//                 primary={deal.name}
-//                 secondary={
-//                   <>
-//                     {/* @ts-ignore */}
-//                     {stageNames[deal.stage]},{" "}
-//                     {deal.amount.toLocaleString("fa-IR", {
-//                       notation: "compact",
-//                       style: "currency",
-//                       currency: "IRR",
-//                       currencyDisplay: "narrowSymbol",
-//                       minimumSignificantDigits: 3,
-//                     })}
-//                     , {deal.type}
-//                   </>
-//                 }
-//               />
-//               <ListItemSecondaryAction>
-//                 <Typography
-//                   variant="body2"
-//                   color="textSecondary"
-//                   component="span"
-//                 >
-//                   {`${translate("ra.contacts.last_seen")} `}
-//                   {formatDistance(new Date(deal.updated_at), now, {
-//                     locale: i18nProvider.getLocale() === "fa" ? faIR : enUS,
-//                   })}{" "}
-//                   {translate("ra.misc.ago")}{" "}
-//                 </Typography>
-//               </ListItemSecondaryAction>
-//             </ListItem>
-//           );
-//         })}
-//       </List>
-//     </Box>
-//   );
-// };
+  if (!loaded) return null;
+  return (
+    <Box>
+      <List>
+        {ids.map((id) => {
+          const deal = data[id];
+          return (
+            <ListItem
+              button
+              key={id}
+              component={RouterLink}
+              to={`/deals/${id}/show`}
+            >
+              <ListItemText
+                primary={deal.name}
+                secondary={
+                  <>
+                    {/* @ts-ignore */}
+                    {translate(stageNames[deal.stage])},{" "}
+                    {deal.amount.toLocaleString("fa-IR", {
+                      notation: "compact",
+                      style: "currency",
+                      currency: "IRR",
+                      currencyDisplay: "narrowSymbol",
+                      minimumSignificantDigits: 3,
+                    })}
+                    , {translate(deal.type)}
+                  </>
+                }
+              />
+              <ListItemSecondaryAction>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="span"
+                >
+                  {`${translate("ra.contacts.last_seen")} `}
+                  {formatDistance(new Date(deal.updated_at), now, {
+                    locale: i18nProvider.getLocale() === "fa" ? faIR : enUS,
+                  })}{" "}
+                  {translate("ra.misc.ago")}{" "}
+                </Typography>
+              </ListItemSecondaryAction>
+            </ListItem>
+          );
+        })}
+      </List>
+    </Box>
+  );
+};
 
 const CompanyShowContent = () => {
   const { record, loaded } = useShowContext<Company>();
@@ -259,7 +255,7 @@ const CompanyShowContent = () => {
                 <ContactsIterator />
               </ReferenceManyField>
             </TabPanel>
-            {/* <TabPanel value={value} index={1}>
+            <TabPanel value={value} index={1}>
               <ReferenceManyField
                 reference="deals"
                 target="company_id"
@@ -267,7 +263,7 @@ const CompanyShowContent = () => {
               >
                 <DealsIterator />
               </ReferenceManyField>
-            </TabPanel> */}
+            </TabPanel>
           </CardContent>
         </Card>
       </Box>
