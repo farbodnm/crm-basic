@@ -19,8 +19,8 @@ import {
   Button,
   Box,
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/BrushRounded";
-import DeleteIcon from "@material-ui/icons/ClearRounded";
+import EditIcon from "@material-ui/icons/EditRounded";
+import DeleteIcon from "@material-ui/icons/DeleteForeverRounded";
 
 import Status from "../Status";
 import useStyles from "../../styles/components/notes/note";
