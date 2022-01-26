@@ -164,7 +164,7 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
           <DialogContent>
             <TextField
               multiline
-              rows={3}
+              minRows={3}
               maxRows={10}
               label={translate("ra.tasks.task")}
               fullWidth

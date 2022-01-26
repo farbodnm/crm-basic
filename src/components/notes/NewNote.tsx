@@ -90,7 +90,7 @@ export const NewNote = ({
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setText(event.target.value)
           }
-          rows={3}
+          minRows={3}
           maxRows={10}
         />
         <Box className={classes.toolbar}>
