@@ -16,7 +16,6 @@ import { DealListContent } from "./DealListContent";
 import { DealShow } from "./DealShow";
 import { OnlyMineInput } from "./OnlyMineInput";
 import { DealEdit } from "./DealEdit";
-import { DealCreate } from "./DealCreate";
 
 const dealFilters = [
   <SearchInput source="q" alwaysOn />,

@@ -17,7 +17,6 @@ import {
   ReferenceArrayInput,
   CreateProps,
 } from "react-admin";
-import { Dialog, DialogContent } from "@material-ui/core";
 import moment, { Moment } from "moment";
 import jMoment from "moment-jalaali";
 import JalaliUtils from "@date-io/jalaali";
