@@ -9,13 +9,13 @@ import {
   required,
   useRedirect,
   useDataProvider,
-  CreateProps,
   useTranslate,
   useInput,
   InputProps,
   SelectArrayInput,
   FormDataConsumer,
   ReferenceArrayInput,
+  CreateProps,
 } from "react-admin";
 import { Dialog, DialogContent } from "@material-ui/core";
 import moment, { Moment } from "moment";
@@ -58,7 +58,7 @@ const InputDatePicker = (props: InputProps<any>) => {
   );
 };
 
-export const DealCreate = ({ open, ...props }: { open: boolean }) => {
+export const DealCreate = (props: CreateProps) => {
   const classes = useStyles();
   const redirect = useRedirect();
   const dataProvider = useDataProvider();
@@ -69,12 +69,7 @@ export const DealCreate = ({ open, ...props }: { open: boolean }) => {
     setSelectedDate(moment);
   };
 
-  const handleClose = () => {
-    redirect("/deals");
-  };
-
   const onSuccess = ({ data: deal }: { data: Deal }) => {
-    console.log(selectedDate);
     redirect("/deals");
     dataProvider
       .getList("deals", {
@@ -98,111 +93,107 @@ export const DealCreate = ({ open, ...props }: { open: boolean }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogContent>
-        <Create
-          className={classes.root}
-          onSuccess={onSuccess}
-          {...props}
-          transform={(data: any) => ({
-            ...data,
-            created_at: getCurrentDate(),
-            updated_at: getCurrentDate(),
-          })}
+    <Create
+      className={classes.root}
+      onSuccess={onSuccess}
+      {...props}
+      transform={(data: any) => ({
+        ...data,
+        created_at: getCurrentDate(),
+        updated_at: getCurrentDate(),
+      })}
+    >
+      <SimpleForm initialValues={{ index: 0 }}>
+        <TextInput
+          variant="standard"
+          source="name"
+          label={translate("ra.deals.dealName")}
+          fullWidth
+          validate={[required()]}
+        />
+        <TextInput
+          variant="standard"
+          source="description"
+          label={translate("ra.deals.description")}
+          multiline
+          minRows={3}
+          maxRows={10}
+          fullWidth
+        />
+        <ReferenceInput
+          variant="standard"
+          source="company_id"
+          label={translate("ra.deals.company")}
+          reference="companies"
+          fullWidth
+          validate={[required()]}
         >
-          <SimpleForm initialValues={{ index: 0 }}>
-            <TextInput
-              variant="standard"
-              source="name"
-              label={translate("ra.deals.dealName")}
-              fullWidth
-              validate={[required()]}
-            />
-            <TextInput
-              variant="standard"
-              source="description"
-              label={translate("ra.deals.description")}
-              multiline
-              rows={3}
-              maxRows={10}
-              fullWidth
-            />
-            <ReferenceInput
-              variant="standard"
-              source="company_id"
-              label={translate("ra.deals.company")}
-              reference="companies"
-              fullWidth
-              validate={[required()]}
+          <AutocompleteInput optionText="name" />
+        </ReferenceInput>
+        <FormDataConsumer fullWidth>
+          {({ formData, ...rest }) => (
+            <ReferenceArrayInput
+              source="contact_ids"
+              reference="contacts"
+              filter={{ company_id: formData.company_id }}
+              label={translate("ra.deals.contacts")}
+              disabled={!formData.company_id}
+              {...rest}
             >
-              <AutocompleteInput optionText="name" />
-            </ReferenceInput>
-            <FormDataConsumer fullWidth>
-              {({ formData, ...rest }) => (
-                <ReferenceArrayInput
-                  source="contact_ids"
-                  reference="contacts"
-                  filter={{ company_id: formData.company_id }}
-                  label={translate("ra.deals.contacts")}
-                  disabled={!formData.company_id}
-                  {...rest}
-                >
-                  <SelectArrayInput
-                    optionText={(contacts: any) =>
-                      `${contacts.first_name} ${contacts.last_name}`
-                    }
-                    variant="standard"
-                    helperText={false}
-                  />
-                </ReferenceArrayInput>
-              )}
-            </FormDataConsumer>
-            <SelectInput
-              variant="standard"
-              source="stage"
-              label={translate("ra.deals.stage")}
-              choices={stageChoices}
-              fullWidth
-              validate={[required()]}
-            />
-            <SelectInput
-              variant="standard"
-              label={translate("ra.deals.type")}
-              source="type"
-              choices={typeChoices}
-              validate={[required()]}
-              fullWidth
-            />
-            <NumberInput
-              variant="standard"
-              source="amount"
-              label={translate("ra.deals.amount")}
-              fullWidth
-            />
-            <ReferenceInput
-              source="sales_id"
-              reference="sales"
-              variant="standard"
-              label={translate("ra.companies.accountManager")}
-              helperText={false}
-            >
-              <SelectInput
-                validate={[required()]}
-                optionText={(sales: any) =>
-                  `${sales.first_name} ${sales.last_name}`
+              <SelectArrayInput
+                optionText={(contacts: any) =>
+                  `${contacts.first_name} ${contacts.last_name}`
                 }
+                variant="standard"
+                helperText={false}
               />
-            </ReferenceInput>
-            <InputDatePicker
-              source="start_at"
-              minDateMessage={translate("ra.date.minDateMessage")}
-              value={selectedDate}
-              label={translate("ra.date.startDate")}
-              onChange={(e) => handleDateChange(e)}
-            />
-          </SimpleForm>
-        </Create>
-      </DialogContent>
-    </Dialog>
+            </ReferenceArrayInput>
+          )}
+        </FormDataConsumer>
+        <SelectInput
+          variant="standard"
+          source="stage"
+          label={translate("ra.deals.stage")}
+          choices={stageChoices}
+          fullWidth
+          validate={[required()]}
+        />
+        <SelectInput
+          variant="standard"
+          label={translate("ra.deals.type")}
+          source="type"
+          choices={typeChoices}
+          validate={[required()]}
+          fullWidth
+        />
+        <NumberInput
+          variant="standard"
+          source="amount"
+          label={translate("ra.deals.amount")}
+          fullWidth
+        />
+        <ReferenceInput
+          source="sales_id"
+          reference="sales"
+          variant="standard"
+          label={translate("ra.companies.accountManager")}
+          helperText={false}
+        >
+          <SelectInput
+            validate={[required()]}
+            optionText={(sales: any) =>
+              `${sales.first_name} ${sales.last_name}`
+            }
+          />
+        </ReferenceInput>
+        <InputDatePicker
+          source="start_at"
+          minDateMessage={translate("ra.date.minDateMessage")}
+          value={selectedDate}
+          label={translate("ra.date.startDate")}
+          onChange={(e) => handleDateChange(e)}
+        />
+      </SimpleForm>
+    </Create>
   );
 };

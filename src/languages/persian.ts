@@ -102,6 +102,7 @@ const fa = {
       others: "دیگر",
       printWriting: "آگهی نویسی",
       websiteDesign: "دیزاین سایت",
+      editDeal: "ویرایش قرارداد",
     },
     actions: {
       cancel: "لغو",

@@ -8,7 +8,6 @@ import {
   AutocompleteInput,
   required,
   useRedirect,
-  useDataProvider,
   useTranslate,
   useInput,
   InputProps,
@@ -24,7 +23,6 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { useState } from "react";
 
 import { stageChoices, typeChoices } from "./info";
-import { Deal } from "../../utils/types";
 import useStyles from "../../styles/deals/dealCreate";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
@@ -67,7 +65,6 @@ export const DealEdit = ({
 }) => {
   const classes = useStyles();
   const redirect = useRedirect();
-  const dataProvider = useDataProvider();
   const translate = useTranslate();
   const [selectedDate, setSelectedDate] = useState<Moment | null>(moment());
 
@@ -76,31 +73,11 @@ export const DealEdit = ({
   };
 
   const handleClose = () => {
-    redirect("/deals");
+    redirect(`/deals/${id}/show`);
   };
 
-  const onSuccess = ({ data: deal }: { data: Deal }) => {
-    console.log(selectedDate);
-    redirect("/deals");
-    dataProvider
-      .getList("deals", {
-        pagination: { page: 1, perPage: 50 },
-        sort: { field: "id", order: "ASC" },
-        filter: { stage: deal.stage },
-      })
-      .then(({ data: deals }) =>
-        Promise.all(
-          deals
-            .filter((oldDeal) => oldDeal.id !== deal.id)
-            .map((oldDeal) =>
-              dataProvider.update("deals", {
-                id: oldDeal.id,
-                data: { index: oldDeal.index - 1 },
-                previousData: oldDeal,
-              })
-            )
-        )
-      );
+  const onSuccess = () => {
+    redirect(`/deals/${id}/show`);
   };
 
   return (
@@ -109,11 +86,11 @@ export const DealEdit = ({
         <Edit
           className={classes.root}
           onSuccess={onSuccess}
+          mutationMode="pessimistic"
           id={id}
           {...props}
           transform={(data: any) => ({
             ...data,
-            created_at: getCurrentDate(),
             updated_at: getCurrentDate(),
           })}
         >
@@ -130,7 +107,7 @@ export const DealEdit = ({
               source="description"
               label={translate("ra.deals.description")}
               multiline
-              rows={3}
+              minRows={3}
               maxRows={10}
               fullWidth
             />

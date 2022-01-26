@@ -61,12 +61,8 @@ export const DealList = (props: ListProps) => {
       >
         <DealListContent />
       </List>
-      <Route path="/deals/create">
-        {({ match }) => <DealCreate open={!!match} {...props} />}
-      </Route>
       <Route path="/deals/:id/edit">
         {({ match }) => {
-          console.log(match?.params?.id);
           return !!match ? (
             <DealEdit open={!!match} id={match?.params?.id} {...props} />
           ) : null;
