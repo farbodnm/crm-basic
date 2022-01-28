@@ -103,7 +103,7 @@ export const Note = ({
               size="small"
               onClick={handleEnterEditMode}
             >
-              <EditIcon style={{ fill: "#3a9bdc" }} />
+              <EditIcon style={{ fill: "#1976d2" }} />
             </IconButton>
           </Tooltip>
           <Tooltip title={translate("ra.notes.deleteNote")}>
