@@ -49,7 +49,7 @@ const Header = () => {
   const currentPath = match?.path ?? "/";
 
   return (
-    <nav className={classes.root}>
+    <nav dir="rtl" className={classes.root}>
       <AppBar position="static">
         <Toolbar variant="dense">
           <Box flex={1} display="flex" justifyContent="space-between">
@@ -61,13 +61,15 @@ const Header = () => {
                 }
                 alt="Bosch Logo"
               />
-              <Typography
-                component="span"
-                variant="h5"
-                className={classes.appName}
-              >
-                {translate("ra.misc.crm")}
-              </Typography>
+              <Box ml={1}>
+                <Typography
+                  component="span"
+                  variant="h5"
+                  className={classes.appName}
+                >
+                  {translate("ra.misc.crm")}
+                </Typography>
+              </Box>
             </Box>
             <Box>
               <Tabs

@@ -24,6 +24,7 @@ import DeleteIcon from "@material-ui/icons/DeleteForeverRounded";
 
 import Status from "../Status";
 import useStyles from "../../styles/components/notes/note";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 export const Note = ({
   showStatus,
@@ -90,11 +91,16 @@ export const Note = ({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Box position="relative" className={classes.metadata}>
+      <Box
+        position="relative"
+        className={classes.metadata}
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+      >
         <Box
           display="flex"
           position="absolute"
-          right={0}
+          right={i18nProvider.getLocale() === "fa" ? 0 : "auto"}
+          left={i18nProvider.getLocale() === "fa" ? "auto" : 0}
           style={{ visibility: isHover && !isEditing ? "visible" : "hidden" }}
         >
           <Tooltip title={translate("ra.notes.editNote")}>
@@ -134,7 +140,7 @@ export const Note = ({
           record={note}
           variant="body1"
           showTime
-          locales="fa-IR"
+          locales={i18nProvider.getLocale()}
           options={{
             dateStyle: "full",
             timeStyle: "short",

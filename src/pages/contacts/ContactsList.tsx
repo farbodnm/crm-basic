@@ -77,7 +77,7 @@ const ContactListContent = () => {
               primary={`${contact.first_name} ${contact.last_name}`}
               secondary={
                 <Box flex={1} display="flex">
-                  <Box dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
+                  <Box>
                     {contact.title} {translate("ra.misc.at")}{" "}
                     <ReferenceField
                       record={contact}

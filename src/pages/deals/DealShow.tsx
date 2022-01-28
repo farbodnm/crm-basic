@@ -19,12 +19,14 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/EditRounded";
 import { makeStyles } from "@material-ui/core/styles";
-import { format } from "date-fns-jalali";
+import { format } from "date-fns";
+import { format as formatJalali } from "date-fns-jalali";
 
 import { CompanyAvatar } from "../companies/CompanyAvatar";
 import { NotesIterator } from "../../components/notes/NotesIterator";
 import { ContactList } from "./ContactList";
 import { stageNames } from "./info";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 const useStyles = makeStyles((theme) => ({
   dialog: {
@@ -84,7 +86,12 @@ const DealShowContent = () => {
                       {translate("ra.deals.start")}
                     </Typography>
                     <Typography variant="subtitle1">
-                      {format(new Date(record.start_at), "yyyy MMMM d")}
+                      {i18nProvider.getLocale() === "en"
+                        ? format(new Date(record.start_at), "yyyy MMMM d")
+                        : formatJalali(
+                            new Date(record.start_at),
+                            "yyyy MMMM d"
+                          )}
                     </Typography>
                   </Box>
 

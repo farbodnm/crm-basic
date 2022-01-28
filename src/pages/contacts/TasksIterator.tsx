@@ -27,6 +27,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Contact } from "../../utils/types";
 import RoundButton from "../../components/RoundButton";
 import Tasks from "./Tasks";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -92,7 +93,10 @@ const TasksIterator = ({ record }: { record: Contact }) => {
 
   return (
     <Box marginBottom={2}>
-      <Typography variant="subtitle2">
+      <Typography
+        variant="subtitle2"
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+      >
         {translate("ra.contacts.tasks")}
       </Typography>
       <Divider />

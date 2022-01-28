@@ -42,30 +42,33 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         )}
       </Box>
 
-      <Typography variant="subtitle2">
+      <Typography
+        variant="subtitle2"
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+      >
         {translate("ra.contacts.personalInfo")}
       </Typography>
       <Divider />
 
-      <Box mt={2}>
+      <Box mt={2} dir="ltr">
         <EmailField source="email" />
       </Box>
 
-      <Box mt={1}>
+      <Box mt={1} dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
         <TextField source="phone_number1" />{" "}
         <Typography variant="body2" color="textSecondary" component="span">
           {translate("ra.contacts.work")}
         </Typography>
       </Box>
 
-      <Box mb={1}>
+      <Box mb={1} dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
         <TextField source="phone_number2" />{" "}
         <Typography variant="body2" color="textSecondary" component="span">
           {translate("ra.contacts.home")}
         </Typography>
       </Box>
 
-      <Box mb={3}>
+      <Box mb={3} dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
         <Typography variant="body2">
           {record.gender === "مرد"
             ? translate("ra.contacts.male")
@@ -73,7 +76,10 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         </Typography>
       </Box>
 
-      <Typography variant="subtitle2">
+      <Typography
+        variant="subtitle2"
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+      >
         {translate("ra.contacts.background")}
       </Typography>
       <Divider />
@@ -89,7 +95,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         </Typography>{" "}
         <DateField
           source="first_seen"
-          locales="fa-IR"
+          locales={i18nProvider.getLocale()}
           options={{ year: "numeric", month: "long", day: "numeric" }}
           color="textSecondary"
         />
@@ -99,7 +105,7 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
         </Typography>{" "}
         <DateField
           source="last_seen"
-          locales="fa-IR"
+          locales={i18nProvider.getLocale()}
           options={{ year: "numeric", month: "long", day: "numeric" }}
           color="textSecondary"
         />
@@ -107,7 +113,12 @@ export const ContactAside = ({ record, link = "edit" }: any) => {
       </Box>
 
       <Box mb={3}>
-        <Typography variant="subtitle2">{translate("ra.tags.tags")}</Typography>
+        <Typography
+          dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+          variant="subtitle2"
+        >
+          {translate("ra.tags.tags")}
+        </Typography>
         <Divider />
         <TagsListEdit record={record} />
       </Box>

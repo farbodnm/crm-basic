@@ -10,6 +10,7 @@ import {
 import { Box, Typography, Divider, Link, Paper } from "@material-ui/core";
 
 import { Company, Sale } from "../../utils/types";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 export const CompanyAside = ({
   record,
@@ -44,7 +45,10 @@ export const CompanyAside = ({
           />
         )}
       </Box>
-      <Typography variant="subtitle2">
+      <Typography
+        variant="subtitle2"
+        dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+      >
         {translate("ra.companies.companyInfo")}
       </Typography>
       <Divider />
@@ -53,7 +57,7 @@ export const CompanyAside = ({
         <br />
         LinkedIn: <Link href={record.linkedIn}>LinkedIn</Link>
       </Box>
-      <Box mt={1}>
+      <Box mt={1} dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}>
         <TextField source="phone_number" record={record} />{" "}
         <Typography variant="body2" color="textSecondary" component="span">
           {translate("ra.companies.phoneNumber")}
@@ -74,6 +78,7 @@ export const CompanyAside = ({
           </Typography>{" "}
           <DateField
             source="created_at"
+            locales={i18nProvider.getLocale()}
             options={{ year: "numeric", month: "long", day: "numeric" }}
             color="textSecondary"
           />

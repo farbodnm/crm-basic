@@ -6,16 +6,15 @@ import { randomDate } from "../utils/fakerFunctions";
 import { Db, Company } from "../utils/types";
 
 const sectors = [
-  "خدمات ارتباطی",
-  "کالاهای اساسی مصرف کننده",
-  "انرژی",
-  "اقتصادی",
-  "بهداشت و درمان",
-  "صنعتی",
-  "فناوری اطلاعات",
-  "مادی",
-  "املاکی",
-  "کاروری",
+  "ra.companies.communicationSerivces",
+  "ra.companies.energy",
+  "ra.companies.financials",
+  "ra.companies.healthCare",
+  "ra.companies.insurance",
+  "ra.companies.industrials",
+  "ra.companies.informationTechnology",
+  "ra.companies.realState",
+  "ra.companies.utilities",
 ];
 
 const sizes = [1, 10, 50, 250, 500];

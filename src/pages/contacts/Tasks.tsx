@@ -32,6 +32,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 import RoundButton from "../../components/RoundButton";
 import useStyles from "../../styles/contacts/tasks";
+import { i18nProvider } from "../../providers/i18nProvider";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -145,7 +146,11 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
             </Box>
             <Typography variant="body2" color="textSecondary">
               {translate("ra.misc.due")}{" "}
-              <DateField locales="fa-IR" source="due_date" record={task} />
+              <DateField
+                locales={i18nProvider.getLocale()}
+                source="due_date"
+                record={task}
+              />
             </Typography>
           </Box>
         </Box>

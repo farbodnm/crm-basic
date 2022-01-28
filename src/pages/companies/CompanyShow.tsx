@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from "react";
 import {
   ShowBase,
   ShowProps,
-  TextField,
   ReferenceManyField,
   SelectField,
   useShowContext,
@@ -212,7 +211,7 @@ const CompanyShowContent = () => {
               <Box ml={2} flex="1">
                 <Typography variant="h5">{record.name}</Typography>
                 <Typography variant="body2">
-                  <TextField source="sector" />,{" "}
+                  {translate(record.sector)},{" "}
                   <SelectField source="size" choices={sizes} />
                 </Typography>
               </Box>
@@ -224,26 +223,26 @@ const CompanyShowContent = () => {
               onChange={handleChange}
               centered
             >
-              {record.nb_contacts && (
-                <Tab
-                  label={
-                    record.nb_contacts === 1
-                      ? `1 ${translate("ra.companies.contact")}`
-                      : `${record.nb_contacts} ${translate(
-                          "ra.companies.contacts"
-                        )}`
-                  }
-                />
-              )}
-              {record.nb_deals && (
-                <Tab
-                  label={
-                    record.nb_deals === 1
-                      ? `1 ${translate("ra.companies.deal")}`
-                      : `${record.nb_deals} ${translate("ra.companies.deals")}`
-                  }
-                />
-              )}
+              <Tab
+                label={
+                  record.nb_contacts === 1
+                    ? `1 ${translate("ra.companies.contact")}`
+                    : `${record.nb_contacts} ${translate(
+                        "ra.companies.contacts"
+                      )}`
+                }
+                disabled={record.nb_contacts === 0}
+                dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+              />
+              <Tab
+                label={
+                  record.nb_deals === 1
+                    ? `1 ${translate("ra.companies.deal")}`
+                    : `${record.nb_deals} ${translate("ra.companies.deals")}`
+                }
+                disabled={record.nb_deals === 0}
+                dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+              />
             </Tabs>
             <Divider />
             <TabPanel value={value} index={0}>
