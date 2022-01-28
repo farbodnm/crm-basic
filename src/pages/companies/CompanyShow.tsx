@@ -61,44 +61,6 @@ const TabPanel = (props: TabPanelProps) => {
   );
 };
 
-const ContactsTab = (record: any) => {
-  const translate = useTranslate();
-
-  return (
-    <Tab
-      label={
-        record.loaded
-          ? record.total === 1
-            ? `1 ${translate("ra.companies.contact")}`
-            : `${record.total} ${translate("ra.companies.contacts")}`
-          : translate("ra.companies.contacts")
-      }
-      disabled={record.total === 0}
-      dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
-      {...record}
-    />
-  );
-};
-
-const DealsTab = (record: any) => {
-  const translate = useTranslate();
-
-  return (
-    <Tab
-      label={
-        record.loaded
-          ? record.total === 1
-            ? `1 ${translate("ra.companies.deal")}`
-            : `${record.total} ${translate("ra.companies.deals")}`
-          : translate("ra.companies.deal")
-      }
-      disabled={record.total === 0}
-      dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
-      {...record}
-    />
-  );
-};
-
 const ContactsIterator = () => {
   const { data, ids, loaded } = useListContext<Contact>();
   const record = useRecordContext();
@@ -261,21 +223,26 @@ const CompanyShowContent = () => {
               onChange={handleChange}
               centered
             >
-              <ReferenceManyField
-                reference="contacts"
-                target="company_id"
-                sort={{ field: "last_name", order: "ASC" }}
-              >
-                <ContactsTab />
-              </ReferenceManyField>
-
-              <ReferenceManyField
-                reference="deals"
-                target="company_id"
-                sort={{ field: "name", order: "ASC" }}
-              >
-                <DealsTab />
-              </ReferenceManyField>
+              <Tab
+                label={
+                  record.nb_contacts === 1
+                    ? `1 ${translate("ra.companies.contact")}`
+                    : `${record.nb_contacts} ${translate(
+                        "ra.companies.contacts"
+                      )}`
+                }
+                disabled={record.nb_contacts === 0}
+                dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+              />
+              <Tab
+                label={
+                  record.nb_deals === 1
+                    ? `1 ${translate("ra.companies.deal")}`
+                    : `${record.nb_deals} ${translate("ra.companies.deals")}`
+                }
+                disabled={record.nb_deals === 0}
+                dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
+              />
             </Tabs>
             <Divider />
             <TabPanel value={value} index={0}>

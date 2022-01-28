@@ -10,6 +10,12 @@ import {
   useEditContext,
   useTranslate,
   SelectInput,
+  DeleteButton,
+  SaveButton,
+  useUpdate,
+  useRecordContext,
+  useGetOne,
+  useRedirect,
 } from "react-admin";
 import { Card, CardContent, Box } from "@material-ui/core";
 import omit from "lodash/omit";
@@ -21,26 +27,44 @@ import useStyles from "../../styles/contacts/contactEdit";
 
 const Spacer = () => <Box width={20} component="span" />;
 
-const CustomToolbar = (formProps: any) => (
-  <Toolbar
-    {...omit(formProps, [
-      // FIXME Not super user friendly way to remove warnings
-      "dirtyFields",
-      "dirtyFieldsSinceLastSubmit",
-      "dirtySinceLastSubmit",
-      "hasSubmitErrors",
-      "hasValidationErrors",
-      "initialValues",
-      "modifiedSinceLastSubmit",
-      "submitError",
-      "submitErrors",
-      "submitFailed",
-      "submitSucceeded",
-      "submitting",
-      "valid",
-    ])}
-  />
-);
+const CustomToolbar = (formProps: any) => {
+  const [update] = useUpdate();
+  const record = useRecordContext();
+  const redirect = useRedirect();
+  const { data } = useGetOne("companies", record.company_id);
+
+  const handleDelete = () => {
+    update("companies", record.company_id, {
+      nb_contacts: data?.nb_contacts - 1,
+    });
+    redirect("/contacts");
+  };
+
+  return (
+    <Toolbar
+      {...omit(formProps, [
+        // FIXME Not super user friendly way to remove warnings
+        "dirtyFields",
+        "dirtyFieldsSinceLastSubmit",
+        "dirtySinceLastSubmit",
+        "hasSubmitErrors",
+        "hasValidationErrors",
+        "initialValues",
+        "modifiedSinceLastSubmit",
+        "submitError",
+        "submitErrors",
+        "submitFailed",
+        "submitSucceeded",
+        "submitting",
+        "valid",
+      ])}
+      style={{ display: "flex", justifyContent: "space-between" }}
+    >
+      <SaveButton />
+      <DeleteButton mutationMode="pessimistic" onSuccess={handleDelete} />
+    </Toolbar>
+  );
+};
 
 const ContactEditContent = () => {
   const { record, loaded, save } = useEditContext<Contact>();

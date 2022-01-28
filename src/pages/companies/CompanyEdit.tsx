@@ -37,7 +37,12 @@ export const CompanyEdit = (props: EditProps) => {
 
   return (
     <Box width="100%">
-      <Edit {...props} aside={<CompanyAside link="show" />} actions={false}>
+      <Edit
+        {...props}
+        mutationMode="pessimistic"
+        aside={<CompanyAside link="show" />}
+        actions={false}
+      >
         <SimpleForm
           component={CustomLayout}
           className={classes.center}

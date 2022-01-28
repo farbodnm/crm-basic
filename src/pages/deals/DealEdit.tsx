@@ -14,6 +14,12 @@ import {
   SelectArrayInput,
   FormDataConsumer,
   ReferenceArrayInput,
+  Toolbar,
+  DeleteButton,
+  SaveButton,
+  useUpdate,
+  useRecordContext,
+  useGetOne,
 } from "react-admin";
 import { Dialog, DialogContent } from "@material-ui/core";
 import moment, { Moment } from "moment";
@@ -55,6 +61,29 @@ const InputDatePicker = (props: InputProps<any>) => {
   );
 };
 
+const CustomToolbar = (formProps: any) => {
+  const [update] = useUpdate();
+  const record = useRecordContext();
+  const redirect = useRedirect();
+  const { data } = useGetOne("companies", record.company_id);
+
+  const handleDelete = () => {
+    update("companies", record.company_id, {
+      nb_deals: data?.nb_deals - 1,
+    });
+    redirect("/deals");
+  };
+
+  return (
+    <Toolbar
+      style={{ display: "flex", justifyContent: "space-between" }}
+      {...formProps}
+    >
+      <SaveButton />
+      <DeleteButton mutationMode="pessimistic" onSuccess={handleDelete} />
+    </Toolbar>
+  );
+};
 export const DealEdit = ({
   open,
   id,
@@ -94,7 +123,7 @@ export const DealEdit = ({
             updated_at: getCurrentDate(),
           })}
         >
-          <SimpleForm initialValues={{ index: 0 }}>
+          <SimpleForm toolbar={<CustomToolbar />} initialValues={{ index: 0 }}>
             <TextInput
               variant="standard"
               source="name"
