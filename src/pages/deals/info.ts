@@ -9,11 +9,11 @@ export const stageNames = {
 
 export const stages = [
   "opportunity",
-  "proposal-sent",
   "in-negotiation",
+  "proposal-sent",
+  "delayed",
   "won",
   "lost",
-  "delayed",
 ];
 
 export const stageChoices = stages.map((type) => ({
