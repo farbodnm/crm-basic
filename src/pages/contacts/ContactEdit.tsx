@@ -78,6 +78,16 @@ const ContactEditContent = () => {
                         source="last_name"
                       />
                     </Box>
+                    <SelectInput
+                      style={{ width: "48%", margin: "0 auto" }}
+                      variant="standard"
+                      source="gender"
+                      label={translate("ra.contacts.gender")}
+                      choices={[
+                        { id: "مرد", name: "مرد" },
+                        { id: "زن", name: "زن" },
+                      ]}
+                    />
                     <Box display="flex">
                       <TextInput
                         variant="standard"

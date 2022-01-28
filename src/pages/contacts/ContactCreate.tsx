@@ -33,7 +33,6 @@ export const ContactCreate = (props: CreateProps) => (
       first_seen: getCurrentDate(),
       last_seen: getCurrentDate(),
       nb_notes: 0,
-      gender: "مرد",
       tags: [],
     })}
   >
@@ -70,6 +69,17 @@ const Renderer = (formProps: any) => {
                 validate={[required()]}
               />
             </Box>
+            <SelectInput
+              style={{ width: "48%", margin: "0 auto" }}
+              variant="standard"
+              source="gender"
+              validate={[required()]}
+              label={translate("ra.contacts.gender")}
+              choices={[
+                { id: "male", name: "مرد" },
+                { id: "female", name: "زن" },
+              ]}
+            />
             <Box display="flex">
               <TextInput
                 label={translate("ra.contacts.title")}

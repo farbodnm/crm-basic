@@ -37,6 +37,7 @@ const fa = {
       avatar: "آواتار",
       newsLetter: "خبرنامه",
       company: "شرکت",
+      gender: "جنسیت",
     },
     tags: {
       tags: "برچسب ها",

@@ -37,6 +37,7 @@ const en = {
       avatar: "Avatar",
       newsLetter: "Newsletter",
       company: "Company",
+      gender: "Gender",
     },
     tags: {
       tags: "Tags",
