@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/crm-basic/static/js/main.a35ee757.js",
+    "static/js/787.270ed629.chunk.js": "/crm-basic/static/js/787.270ed629.chunk.js",
+    "index.html": "/crm-basic/index.html",
+    "main.a35ee757.js.map": "/crm-basic/static/js/main.a35ee757.js.map",
+    "787.270ed629.chunk.js.map": "/crm-basic/static/js/787.270ed629.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a35ee757.js"
+  ]
+}
