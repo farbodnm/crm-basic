@@ -78,7 +78,7 @@ const en = {
       accountManager: "Account Manager",
       sizes: "Sizes",
       sectors: "Sectors",
-      addContact: "Add Contact",
+      addContact: "Add Contact to Company",
       communicationSerivces: "Communication Services",
       energy: "Energy",
       financials: "Financials",
@@ -93,6 +93,7 @@ const en = {
       tenToFourtynineEmployees: "10-49 Employees",
       fiftyToTwohundredfourtynineEmployees: "50-249 Employees",
       moreThanTwoHundredFiftyEmployees: "+250 Employees",
+      addDeal: "Add Deal to Company",
     },
     deals: {
       deals: "Deals",

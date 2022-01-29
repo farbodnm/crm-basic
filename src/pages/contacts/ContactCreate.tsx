@@ -11,8 +11,13 @@ import {
   useCreateContext,
   useTranslate,
   SelectInput,
+  useUpdate,
+  useRedirect,
+  useGetOne,
+  SaveButton,
 } from "react-admin";
 import { Card, CardContent, Box, Avatar } from "@material-ui/core";
+import { useForm } from "react-final-form";
 
 import { Contact } from "../../utils/types";
 import useStyles from "../../styles/contacts/contactCreate";
@@ -23,6 +28,26 @@ const getCurrentDate = () => {
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   return now.toISOString().slice(0, -1);
+};
+
+const CustomToolbar = (formProps: any) => {
+  const [update] = useUpdate();
+  const form = useForm();
+  const redirect = useRedirect();
+  const { data } = useGetOne("companies", form.getState().values.company_id);
+
+  const handleSave = () => {
+    update("companies", form.getState().values.company_id, {
+      nb_contacts: data?.nb_contacts + 1,
+    });
+    redirect("/contacts");
+  };
+
+  return (
+    <Toolbar {...formProps}>
+      <SaveButton onSuccess={handleSave} />
+    </Toolbar>
+  );
 };
 
 export const ContactCreate = (props: CreateProps) => (
@@ -164,7 +189,7 @@ const Renderer = (formProps: any) => {
           </Box>
         </Box>
       </CardContent>
-      <Toolbar {...formProps} />
+      <CustomToolbar {...formProps} />
     </Card>
   );
 };

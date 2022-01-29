@@ -93,6 +93,7 @@ const fa = {
       tenToFourtynineEmployees: "10-49 کارمند",
       fiftyToTwohundredfourtynineEmployees: "50-249 کارمند",
       moreThanTwoHundredFiftyEmployees: "+250 کارمند",
+      addDeal: "اضافه کردن قرارداد برای شرکت",
     },
     deals: {
       deals: "قرارداد ها",

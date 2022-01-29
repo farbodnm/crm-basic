@@ -30,6 +30,7 @@ import { useState } from "react";
 
 import { stageChoices, typeChoices } from "./info";
 import useStyles from "../../styles/deals/dealCreate";
+import { useForm } from "react-final-form";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -64,8 +65,25 @@ const InputDatePicker = (props: InputProps<any>) => {
 const CustomToolbar = (formProps: any) => {
   const [update] = useUpdate();
   const record = useRecordContext();
+  const form = useForm();
   const redirect = useRedirect();
   const { data } = useGetOne("companies", record.company_id);
+  const { data: newData } = useGetOne(
+    "companies",
+    form.getState().values.company_id
+  );
+
+  const handleSave = () => {
+    if (form.getState().values.company_id !== record.company_id) {
+      update("companies", form.getState().values.company_id, {
+        nb_deals: newData?.nb_deals + 1,
+      });
+      update("companies", record.company_id, {
+        nb_deals: data?.nb_deals - 1,
+      });
+    }
+    redirect(`/deals/${record.id}/show`);
+  };
 
   const handleDelete = () => {
     update("companies", record.company_id, {
@@ -79,7 +97,7 @@ const CustomToolbar = (formProps: any) => {
       style={{ display: "flex", justifyContent: "space-between" }}
       {...formProps}
     >
-      <SaveButton />
+      <SaveButton onSuccess={handleSave} />
       <DeleteButton mutationMode="pessimistic" onSuccess={handleDelete} />
     </Toolbar>
   );

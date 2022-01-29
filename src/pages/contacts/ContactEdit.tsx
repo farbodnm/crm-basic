@@ -24,14 +24,32 @@ import Avatar from "./Avatar";
 import { ContactAside } from "./ContactAside";
 import { Contact } from "../../utils/types";
 import useStyles from "../../styles/contacts/contactEdit";
+import { useForm } from "react-final-form";
 
 const Spacer = () => <Box width={20} component="span" />;
 
 const CustomToolbar = (formProps: any) => {
   const [update] = useUpdate();
   const record = useRecordContext();
+  const form = useForm();
   const redirect = useRedirect();
   const { data } = useGetOne("companies", record.company_id);
+  const { data: newData } = useGetOne(
+    "companies",
+    form.getState().values.company_id
+  );
+
+  const handleSave = () => {
+    if (form.getState().values.company_id !== record.company_id) {
+      update("companies", form.getState().values.company_id, {
+        nb_contacts: newData?.nb_contacts + 1,
+      });
+      update("companies", record.company_id, {
+        nb_contacts: data?.nb_contacts - 1,
+      });
+    }
+    redirect(`/contacts/${record.id}/show`);
+  };
 
   const handleDelete = () => {
     update("companies", record.company_id, {
@@ -60,7 +78,7 @@ const CustomToolbar = (formProps: any) => {
       ])}
       style={{ display: "flex", justifyContent: "space-between" }}
     >
-      <SaveButton />
+      <SaveButton onSuccess={handleSave} />
       <DeleteButton mutationMode="pessimistic" onSuccess={handleDelete} />
     </Toolbar>
   );
@@ -206,7 +224,7 @@ const ContactEditContent = () => {
 };
 
 export const ContactEdit = (props: EditProps) => (
-  <EditBase {...props}>
+  <EditBase mutationMode="pessimistic" {...props}>
     <ContactEditContent />
   </EditBase>
 );

@@ -16,6 +16,10 @@ import {
   FormDataConsumer,
   ReferenceArrayInput,
   CreateProps,
+  Toolbar,
+  SaveButton,
+  useUpdate,
+  useGetOne,
 } from "react-admin";
 import moment, { Moment } from "moment";
 import jMoment from "moment-jalaali";
@@ -26,6 +30,7 @@ import { useState } from "react";
 import { stageChoices, typeChoices } from "./info";
 import { Deal } from "../../utils/types";
 import useStyles from "../../styles/deals/dealCreate";
+import { useForm } from "react-final-form";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
@@ -54,6 +59,26 @@ const InputDatePicker = (props: InputProps<any>) => {
         {...input}
       />
     </MuiPickersUtilsProvider>
+  );
+};
+
+const CustomToolbar = (formProps: any) => {
+  const [update] = useUpdate();
+  const form = useForm();
+  const redirect = useRedirect();
+  const { data } = useGetOne("companies", form.getState().values.company_id);
+
+  const handleSave = () => {
+    update("companies", form.getState().values.company_id, {
+      nb_deals: data?.nb_deals + 1,
+    });
+    redirect("/deals");
+  };
+
+  return (
+    <Toolbar {...formProps}>
+      <SaveButton onSuccess={handleSave} />
+    </Toolbar>
   );
 };
 
@@ -102,7 +127,7 @@ export const DealCreate = (props: CreateProps) => {
         updated_at: getCurrentDate(),
       })}
     >
-      <SimpleForm initialValues={{ index: 0 }}>
+      <SimpleForm toolbar={<CustomToolbar />} initialValues={{ index: 0 }}>
         <TextInput
           variant="standard"
           source="name"
@@ -191,6 +216,7 @@ export const DealCreate = (props: CreateProps) => {
           value={selectedDate}
           label={translate("ra.date.startDate")}
           onChange={(e) => handleDateChange(e)}
+          defaultValue={moment()}
         />
       </SimpleForm>
     </Create>

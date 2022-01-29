@@ -25,6 +25,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 import { Link as RouterLink } from "react-router-dom";
 import { formatDistance } from "date-fns-jalali";
 import { faIR, enUS } from "date-fns/locale";
@@ -135,8 +136,29 @@ const CreateRelatedContactButton = ({ record }: any) => {
   );
 };
 
+const CreateRelatedDealButton = ({ record }: any) => {
+  const translate = useTranslate();
+
+  return (
+    <Button
+      component={RouterLink}
+      to={{
+        pathname: "/deals/create",
+        state: { record: { company_id: record.id } },
+      }}
+      color="primary"
+      variant="contained"
+      size="small"
+      startIcon={<PostAddIcon />}
+    >
+      {translate("ra.companies.addDeal")}
+    </Button>
+  );
+};
+
 const DealsIterator = () => {
   const { data, ids, loaded } = useListContext<Deal>();
+  const record = useRecordContext();
   const translate = useTranslate();
   const now = Date.now();
 
@@ -187,6 +209,9 @@ const DealsIterator = () => {
           );
         })}
       </List>
+      <Box textAlign="center" mt={1}>
+        <CreateRelatedDealButton record={record} />
+      </Box>
     </Box>
   );
 };
@@ -231,7 +256,6 @@ const CompanyShowContent = () => {
                         "ra.companies.contacts"
                       )}`
                 }
-                disabled={record.nb_contacts === 0}
                 dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
               />
               <Tab
@@ -240,7 +264,6 @@ const CompanyShowContent = () => {
                     ? `1 ${translate("ra.companies.deal")}`
                     : `${record.nb_deals} ${translate("ra.companies.deals")}`
                 }
-                disabled={record.nb_deals === 0}
                 dir={i18nProvider.getLocale() === "fa" ? "rtl" : "ltr"}
               />
             </Tabs>
