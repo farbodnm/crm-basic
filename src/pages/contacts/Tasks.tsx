@@ -131,7 +131,7 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
                   size="small"
                   onClick={handleOpenEditDialog}
                 >
-                  <EditIcon style={{ fill: "#333" }} />
+                  <EditIcon style={{ fill: "#888" }} />
                 </IconButton>
               </Tooltip>
               <Tooltip title={translate("ra.tasks.deleteTasks")}>
@@ -140,7 +140,7 @@ const Tasks = ({ id, task }: { id: Identifier; task: Record }) => {
                   size="small"
                   onClick={handleDelete}
                 >
-                  <DeleteIcon style={{ fill: "#333" }} />
+                  <DeleteIcon style={{ fill: "#888" }} />
                 </IconButton>
               </Tooltip>
             </Box>
